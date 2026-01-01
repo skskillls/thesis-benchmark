@@ -69,15 +69,12 @@ jobs:
 
       # Uses the official Kaniko executor image.
       - name: Build with Kaniko
-        uses: aevea/action-kaniko@master
-        with:
-          image: gcr.io/kaniko-project/executor:latest
-          # '--no-push': Disables the registry upload step to strictly measure
-          # the image construction and layer caching performance.
-          # '--context': explicit definition of the build context directory.
-          extra_args: |
-            --dockerfile=${{ matrix.service }}/Dockerfile.${{ matrix.type }}
-            --context=dir://${{ github.workspace }}/${{ matrix.service }}
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/workspace \
+            gcr.io/kaniko-project/executor:latest \
+            --dockerfile=/workspace/${{ matrix.service }}/Dockerfile.${{ matrix.type }} \
+            --context=dir:///workspace/${{ matrix.service }} \
             --no-push
 
   # ==================================================================================
