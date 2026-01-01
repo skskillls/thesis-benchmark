@@ -2,25 +2,32 @@ stages:
   - benchmark
 
 # Global Cache Configuration:
-# CI/CD caching is explicitly disabled to prevent interference from GitLab's
-# file-based caching mechanism. The objective is to evaluate the internal
-# layer caching capabilities of the respective build tools.
+# GitLab CI caching is explicitly disabled (empty hash).
+# Rationale: To ensure scientific validity, every build must run in a clean environment.
+# This prevents GitLab's file-based caching from influencing the performance metrics 
+# of the container build tools being tested.
 cache: {}
 
 # ==================================================================================
-# TOOL 1: DOCKER BUILDKIT
-# Environment: Docker-in-Docker (dind).
-# Prerequisite: Requires a runner configuration that permits privileged containers,
-# as the Docker daemon must run inside the CI job.
+# TOOL 1: DOCKER BUILDKIT (Standard Architecture)
+# Context: Tests the traditional client-server architecture using Docker-in-Docker.
+# Reference: https://docs.gitlab.com/ee/ci/docker/using_docker_build.html
 # ==================================================================================
 buildkit_job:
   stage: benchmark
   image: docker:latest
-  services: 
+  services:
+    # The 'dind' service runs the Docker daemon in a separate container.
+    # Note: This typically requires a runner with 'privileged' mode enabled.
     - docker:dind
   variables:
+    # Enforce the use of the modern BuildKit engine for performance parity.
     DOCKER_BUILDKIT: 1
+    # Networking Configuration:
+    # Since the daemon runs as a sidecar service, it is accessible via TCP network,
+    # not via the local Unix socket (/var/run/docker.sock).
     DOCKER_HOST: tcp://docker:2375
+    # Disable TLS to reduce configuration complexity for this benchmark scope.
     DOCKER_TLS_CERTDIR: ""
   parallel:
     matrix:
@@ -28,22 +35,22 @@ buildkit_job:
         TYPE: [baseline, optimized]
   script:
     - echo "Starting BuildKit build for $SERVICE ($TYPE)..."
-    # Execute standard Docker build.
-    # Pushing is omitted to focus metrics on build computation time rather than bandwidth.
+    # Wait strictly to ensure the dind service is fully initialized before connection.
+    - sleep 5
+    # Execution:
+    # The build is performed without pushing to a registry to isolate build computation time.
     - docker build --file $SERVICE/Dockerfile.$TYPE $SERVICE
 
 # ==================================================================================
-# TOOL 2: KANIKO
-# Environment: Execution within the official Kaniko Executor image.
-# Context: Represents a secure, daemonless build approach suitable for Kubernetes.
+# TOOL 2: KANIKO (Daemonless Architecture)
+# Context: Tests a fully unprivileged, userspace-only build process.
+# Reference: https://github.com/GoogleContainerTools/kaniko
 # ==================================================================================
 kaniko_job:
   stage: benchmark
   image:
+    # The debug tag is required to provide a shell (/busybox/sh) for GitLab CI.
     name: gcr.io/kaniko-project/executor:debug
-    # The entrypoint is overridden to an empty string. This allows the GitLab CI
-    # runner to execute the shell scripts defined in the 'script' section,
-    # which is not possible with Kaniko's default entrypoint.
     entrypoint: [""]
   parallel:
     matrix:
@@ -51,27 +58,34 @@ kaniko_job:
         TYPE: [baseline, optimized]
   script:
     - echo "Building $SERVICE with $TYPE using Kaniko"
-    # Kaniko Execution:
-    # --no-push: Ensures only the build process is measured.
+    # Execution:
+    # --context: Explicitly defines the build context root.
+    # --no-push: Prevents network upload latency from skewing build time results.
     - /kaniko/executor --context $CI_PROJECT_DIR/$SERVICE --dockerfile $CI_PROJECT_DIR/$SERVICE/Dockerfile.$TYPE --no-push
+
 # ==================================================================================
-# TOOL 3: BUILDAH
-# Environment: Execution within the official Red Hat Buildah image.
-# Context: Integration test for Buildah on standard CI runners.
+# TOOL 3: BUILDAH (OCI-Compliant Daemonless Architecture)
+# Context: Tests Buildah's performance within a containerized environment.
+# Reference: https://github.com/containers/buildah/blob/main/docs/tutorials/05-openshift-rootless-build.md
 # ==================================================================================
 buildah_job:
   stage: benchmark
   image: quay.io/buildah/stable
+  variables:
+    # Isolation Strategy:
+    # 'chroot' is selected instead of 'oci' (namespaces).
+    # Rationale: Standard Kubernetes/GitLab runners often block the 'unshare' syscall
+    # required for user namespaces. 'chroot' provides file-level isolation compatible
+    # with restricted environments.
+    BUILDAH_ISOLATION: chroot
   parallel:
     matrix:
       - SERVICE: [service-go, service-node, service-python]
         TYPE: [baseline, optimized]
   script:
     - echo "Building $SERVICE with $TYPE using Buildah"
-    # Integration Note:
-    # The storage driver is explicitly set to 'vfs'.
-    # This configuration is necessary because GitLab Shared Runners typically use
-    # OverlayFS. Nesting OverlayFS (running buildah inside a container) often fails.
-    # VFS provides compatibility at the cost of performance, which is a key
-    # integration finding.
+    # Storage Driver Configuration:
+    # 'vfs' is enforced because the standard 'overlay' driver often fails when mounted
+    # inside another container's OverlayFS (filesystem stacking issue).
+    # While 'vfs' may impact I/O performance, it guarantees functional stability.
     - buildah build --storage-driver=vfs --file $SERVICE/Dockerfile.$TYPE $SERVICE
