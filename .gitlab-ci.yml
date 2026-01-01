@@ -1,0 +1,84 @@
+stages:
+  - benchmark
+
+# Global Cache Configuration:
+# CI/CD caching is explicitly disabled to prevent interference from GitLab's
+# file-based caching mechanism. The objective is to evaluate the internal
+# layer caching capabilities of the respective build tools.
+cache: {}
+
+# ==================================================================================
+# TOOL 1: DOCKER BUILDKIT
+# Environment: Docker-in-Docker (dind).
+# Prerequisite: Requires a runner configuration that permits privileged containers,
+# as the Docker daemon must run inside the CI job.
+# ==================================================================================
+buildkit_job:
+  stage: benchmark
+  variables:
+    DOCKER_BUILDKIT: "1"
+  image: docker:latest
+  services:
+    # The dind service is required to provide a Docker daemon instance
+    # within the GitLab Shared Runner environment.
+    - docker:dind
+  parallel:
+    matrix:
+      - SERVICE: [service-go, service-node, service-python]
+        TYPE: [baseline, optimized]
+  script:
+    - echo "Starting BuildKit build for $SERVICE ($TYPE)..."
+    # Execute standard Docker build.
+    # Pushing is omitted to focus metrics on build computation time rather than bandwidth.
+    - docker build --file $SERVICE/Dockerfile.$TYPE $SERVICE
+
+# ==================================================================================
+# TOOL 2: KANIKO
+# Environment: Execution within the official Kaniko Executor image.
+# Context: Represents a secure, daemonless build approach suitable for Kubernetes.
+# ==================================================================================
+kaniko_job:
+  stage: benchmark
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    # The entrypoint is overridden to an empty string. This allows the GitLab CI
+    # runner to execute the shell scripts defined in the 'script' section,
+    # which is not possible with Kaniko's default entrypoint.
+    entrypoint: [""]
+  parallel:
+    matrix:
+      - SERVICE: [service-go, service-node, service-python]
+        TYPE: [baseline, optimized]
+  script:
+    - echo "Building $SERVICE with $TYPE using Kaniko"
+    # Kaniko Execution:
+    # --no-push: Ensures only the build process is measured.
+    - /kaniko/executor \
+        --context $CI_PROJECT_DIR/$SERVICE \
+        --dockerfile $CI_PROJECT_DIR/$SERVICE/Dockerfile.$TYPE \
+        --no-push
+
+# ==================================================================================
+# TOOL 3: BUILDAH
+# Environment: Execution within the official Red Hat Buildah image.
+# Context: Integration test for Buildah on standard CI runners.
+# ==================================================================================
+buildah_job:
+  stage: benchmark
+  image: quay.io/buildah/stable
+  parallel:
+    matrix:
+      - SERVICE: [service-go, service-node, service-python]
+        TYPE: [baseline, optimized]
+  script:
+    - echo "Building $SERVICE with $TYPE using Buildah"
+    # Integration Note:
+    # The storage driver is explicitly set to 'vfs'.
+    # This configuration is necessary because GitLab Shared Runners typically use
+    # OverlayFS. Nesting OverlayFS (running buildah inside a container) often fails.
+    # VFS provides compatibility at the cost of performance, which is a key
+    # integration finding.
+    - buildah build \
+        --storage-driver=vfs \
+        --file $SERVICE/Dockerfile.$TYPE \
+        $SERVICE

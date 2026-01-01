@@ -1,0 +1,110 @@
+name: Benchmark Container Build Tools
+
+# The workflow is configured to respond to two event types:
+# 1. workflow_dispatch: Enables manual triggering of the pipeline.
+#    This is required to execute the controlled experimental runs (N=5)
+#    independently of code changes.
+# 2. push: Ensures pipeline validity upon changes to the main branch.
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  # ==================================================================================
+  # TOOL 1: DOCKER BUILDKIT
+  # Architecture: Utilizes the Docker Buildx plugin (BuildKit engine).
+  # Context: This job evaluates the performance of the standard Docker build
+  # ecosystem within a GitHub Actions runner.
+  # ==================================================================================
+  buildkit:
+    name: BuildKit (${{ matrix.service }}-${{ matrix.type }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      # Matrix Strategy:
+      # Automatically generates job combinations for all defined services and
+      # Dockerfile types (baseline vs. optimized) to ensure consistent test coverage.
+      matrix:
+        service: [service-go, service-node, service-python]
+        type: [baseline, optimized]
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      # Installs the BuildKit engine to enable advanced caching features
+      # and the 'docker buildx' command set.
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build with BuildKit
+        # The build command uses the '--load' flag.
+        # This builds the image and loads it into the local daemon but prevents
+        # pushing to a remote registry. This isolates the build performance measurement
+        # from network latency associated with registry uploads.
+        run: |
+          echo "Starting BuildKit build for ${{ matrix.service }}..."
+          docker buildx build \
+            --file ${{ matrix.service }}/Dockerfile.${{ matrix.type }} \
+            --load \
+            ${{ matrix.service }}
+          echo "Build finished."
+
+  # ==================================================================================
+  # TOOL 2: KANIKO
+  # Architecture: Google's daemonless builder running inside a container.
+  # Context: Evaluates build performance in an unprivileged, user-space environment.
+  # ==================================================================================
+  kaniko:
+    name: Kaniko (${{ matrix.service }}-${{ matrix.type }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        service: [service-go, service-node, service-python]
+        type: [baseline, optimized]
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      # Uses the official Kaniko executor image.
+      - name: Build with Kaniko
+        uses: aevea/action-kaniko@v0.14.1
+        with:
+          image: gcr.io/kaniko-project/executor:latest
+          # '--no-push': Disables the registry upload step to strictly measure
+          # the image construction and layer caching performance.
+          # '--context': explicit definition of the build context directory.
+          extra_args: |
+            --dockerfile=${{ matrix.service }}/Dockerfile.${{ matrix.type }}
+            --context=dir://${{ github.workspace }}/${{ matrix.service }}
+            --no-push
+
+  # ==================================================================================
+  # TOOL 3: BUILDAH
+  # Architecture: Red Hat's daemonless tool, OCI-compliant.
+  # Context: Tests the performance of Buildah natively on the runner.
+  # ==================================================================================
+  buildah:
+    name: Buildah (${{ matrix.service }}-${{ matrix.type }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        service: [service-go, service-node, service-python]
+        type: [baseline, optimized]
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Build with Buildah
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: benchmark-image
+          tags: latest
+          dockerfiles: |
+            ${{ matrix.service }}/Dockerfile.${{ matrix.type }}
+          context: ${{ matrix.service }}
+          # 'layers: true': Forces the creation of intermediate layers.
+          # This is necessary to evaluate the caching behavior in 'warm cache' scenarios.
+          layers: true
