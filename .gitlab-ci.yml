@@ -15,13 +15,13 @@ cache: {}
 # ==================================================================================
 buildkit_job:
   stage: benchmark
-  variables:
-    DOCKER_BUILDKIT: "1"
   image: docker:latest
-  services:
-    # The dind service is required to provide a Docker daemon instance
-    # within the GitLab Shared Runner environment.
+  services: 
     - docker:dind
+  variables:
+    DOCKER_BUILDKIT: 1
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
   parallel:
     matrix:
       - SERVICE: [service-go, service-node, service-python]
@@ -53,11 +53,7 @@ kaniko_job:
     - echo "Building $SERVICE with $TYPE using Kaniko"
     # Kaniko Execution:
     # --no-push: Ensures only the build process is measured.
-    - /kaniko/executor \
-        --context $CI_PROJECT_DIR/$SERVICE \
-        --dockerfile $CI_PROJECT_DIR/$SERVICE/Dockerfile.$TYPE \
-        --no-push
-
+    - /kaniko/executor --context $CI_PROJECT_DIR/$SERVICE --dockerfile $CI_PROJECT_DIR/$SERVICE/Dockerfile.$TYPE --no-push
 # ==================================================================================
 # TOOL 3: BUILDAH
 # Environment: Execution within the official Red Hat Buildah image.
@@ -78,7 +74,4 @@ buildah_job:
     # OverlayFS. Nesting OverlayFS (running buildah inside a container) often fails.
     # VFS provides compatibility at the cost of performance, which is a key
     # integration finding.
-    - buildah build \
-        --storage-driver=vfs \
-        --file $SERVICE/Dockerfile.$TYPE \
-        $SERVICE
+    - buildah build --storage-driver=vfs --file $SERVICE/Dockerfile.$TYPE $SERVICE
