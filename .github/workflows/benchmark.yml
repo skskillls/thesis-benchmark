@@ -69,7 +69,7 @@ jobs:
 
       # Uses the official Kaniko executor image.
       - name: Build with Kaniko
-        uses: aevea/action-kaniko@v0.14.1
+        uses: aevea/action-kaniko@master
         with:
           image: gcr.io/kaniko-project/executor:latest
           # '--no-push': Disables the registry upload step to strictly measure
