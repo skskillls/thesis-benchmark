@@ -1,0 +1,13 @@
+# Go
+service-go/main
+
+# Node
+service-node/node_modules/
+service-node/package-lock.json
+
+# Python
+service-python/__pycache__/
+service-python/venv/
+
+# System
+.DS_Store
