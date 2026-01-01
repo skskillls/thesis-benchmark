@@ -15,6 +15,7 @@ cache: {}
 # ==================================================================================
 buildkit_job:
   stage: benchmark
+  retry: 2
   image: docker:latest
   services:
     # The 'dind' service runs the Docker daemon in a separate container.
@@ -48,6 +49,7 @@ buildkit_job:
 # ==================================================================================
 kaniko_job:
   stage: benchmark
+  retry: 2
   image:
     # The debug tag is required to provide a shell (/busybox/sh) for GitLab CI.
     name: gcr.io/kaniko-project/executor:debug
@@ -70,6 +72,7 @@ kaniko_job:
 # ==================================================================================
 buildah_job:
   stage: benchmark
+  retry: 2
   image: quay.io/buildah/stable
   variables:
     # Isolation Strategy:
