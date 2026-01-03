@@ -88,7 +88,14 @@ kaniko:
     
     # Parse results with proper fallbacks
     - IMAGE_SIZE_BYTES=$(stat -c%s /tmp/image.tar 2>/dev/null || echo "0")
-    - IMAGE_SIZE="${IMAGE_SIZE_BYTES}B"
+    - |
+      if [ "$IMAGE_SIZE_BYTES" -ge 1048576 ] 2>/dev/null; then
+        IMAGE_SIZE="$(awk "BEGIN {printf \"%.1fMB\", $IMAGE_SIZE_BYTES/1048576}")"
+      elif [ "$IMAGE_SIZE_BYTES" -ge 1024 ] 2>/dev/null; then
+        IMAGE_SIZE="$(awk "BEGIN {printf \"%.1fKB\", $IMAGE_SIZE_BYTES/1024}")"
+      else
+        IMAGE_SIZE="${IMAGE_SIZE_BYTES}B"
+      fi
     - CACHE_HITS=$(grep -c "Using caching" /tmp/build.log 2>/dev/null || true)
     - CACHE_TOTAL=$(grep -cE "(RUN|COPY|ADD|FROM)" /tmp/build.log 2>/dev/null || true)
     - CACHE_HITS=${CACHE_HITS:-0}

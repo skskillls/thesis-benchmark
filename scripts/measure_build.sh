@@ -86,16 +86,37 @@ BUILD_OUTPUT=$(cat "$BUILD_LOG")
 # ------------------------------------------------------------------
 IMAGE_SIZE="N/A"; IMAGE_SIZE_BYTES=0
 
+# Helper function: convert bytes to human-readable
+bytes_to_human() {
+    local bytes=$1
+    if [ "$bytes" -ge 1073741824 ] 2>/dev/null; then
+        echo "$(awk "BEGIN {printf \"%.1fGB\", $bytes/1073741824}")"
+    elif [ "$bytes" -ge 1048576 ] 2>/dev/null; then
+        echo "$(awk "BEGIN {printf \"%.1fMB\", $bytes/1048576}")"
+    elif [ "$bytes" -ge 1024 ] 2>/dev/null; then
+        echo "$(awk "BEGIN {printf \"%.1fKB\", $bytes/1024}")"
+    else
+        echo "${bytes}B"
+    fi
+}
+
 # Check by tool type first, then by available commands
 if [ "$TOOL" = "buildah" ] && command -v buildah &>/dev/null; then
-    # Buildah uses its own storage, not Docker's
-    IMAGE_SIZE=$(buildah images benchmark-image:latest --format "{{.Size}}" 2>/dev/null | head -n1 || echo "N/A")
-    # Get size in bytes using buildah inspect
-    IMAGE_SIZE_BYTES=$(buildah inspect --type image benchmark-image:latest 2>/dev/null | grep -o '"size": [0-9]*' | grep -o '[0-9]*' | head -1 || echo "0")
-    # Fallback: try to estimate from the human-readable size
-    if [ "$IMAGE_SIZE_BYTES" = "0" ] || [ -z "$IMAGE_SIZE_BYTES" ]; then
-        IMAGE_SIZE_BYTES=0
+    # Buildah: try multiple approaches to get image size
+    # Method 1: buildah images with proper filter
+    IMAGE_SIZE=$(buildah images --filter reference=benchmark-image:latest --format "{{.Size}}" 2>/dev/null | head -n1)
+    # Method 2: fallback to listing all and grep
+    if [ -z "$IMAGE_SIZE" ] || [ "$IMAGE_SIZE" = "N/A" ]; then
+        IMAGE_SIZE=$(buildah images 2>/dev/null | grep benchmark-image | awk '{print $NF}' | head -n1)
     fi
+    # For bytes, parse from buildah inspect
+    IMAGE_SIZE_BYTES=$(buildah inspect benchmark-image:latest 2>/dev/null | grep -Eo '"size":\s*[0-9]+' | grep -Eo '[0-9]+' | head -1 || echo "0")
+    # If we got bytes but no human-readable size, convert
+    if [ -n "$IMAGE_SIZE_BYTES" ] && [ "$IMAGE_SIZE_BYTES" != "0" ] && { [ -z "$IMAGE_SIZE" ] || [ "$IMAGE_SIZE" = "N/A" ]; }; then
+        IMAGE_SIZE=$(bytes_to_human "$IMAGE_SIZE_BYTES")
+    fi
+    IMAGE_SIZE=${IMAGE_SIZE:-N/A}
+    IMAGE_SIZE_BYTES=${IMAGE_SIZE_BYTES:-0}
 elif command -v docker &>/dev/null; then
     IMAGE_SIZE=$(docker images benchmark-image:latest --format "{{.Size}}" 2>/dev/null | head -n1 || echo "N/A")
     IMAGE_SIZE_BYTES=$(docker image inspect benchmark-image:latest --format "{{.Size}}" 2>/dev/null || echo "0")

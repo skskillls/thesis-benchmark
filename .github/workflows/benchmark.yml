@@ -118,9 +118,15 @@ jobs:
           END_TIME=$(date +%s.%N)
           DURATION=$(echo "$END_TIME - $START_TIME" | bc)
           
-          # Image size from tarball
+          # Image size from tarball - convert to human-readable
           IMAGE_SIZE_BYTES=$(stat -c%s image.tar 2>/dev/null || echo "0")
-          IMAGE_SIZE="${IMAGE_SIZE_BYTES}B"
+          if [ "$IMAGE_SIZE_BYTES" -ge 1048576 ] 2>/dev/null; then
+            IMAGE_SIZE="$(awk "BEGIN {printf \"%.1fMB\", $IMAGE_SIZE_BYTES/1048576}")"
+          elif [ "$IMAGE_SIZE_BYTES" -ge 1024 ] 2>/dev/null; then
+            IMAGE_SIZE="$(awk "BEGIN {printf \"%.1fKB\", $IMAGE_SIZE_BYTES/1024}")"
+          else
+            IMAGE_SIZE="${IMAGE_SIZE_BYTES}B"
+          fi
           
           # Cache parsing with proper integer handling
           CACHE_HITS=$(grep -c "Using caching version" /tmp/build.log 2>/dev/null || true)
