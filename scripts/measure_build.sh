@@ -86,11 +86,19 @@ BUILD_OUTPUT=$(cat "$BUILD_LOG")
 # ------------------------------------------------------------------
 IMAGE_SIZE="N/A"; IMAGE_SIZE_BYTES=0
 
-if command -v docker &>/dev/null; then
+# Check by tool type first, then by available commands
+if [ "$TOOL" = "buildah" ] && command -v buildah &>/dev/null; then
+    # Buildah uses its own storage, not Docker's
+    IMAGE_SIZE=$(buildah images benchmark-image:latest --format "{{.Size}}" 2>/dev/null | head -n1 || echo "N/A")
+    # Get size in bytes using buildah inspect
+    IMAGE_SIZE_BYTES=$(buildah inspect --type image benchmark-image:latest 2>/dev/null | grep -o '"size": [0-9]*' | grep -o '[0-9]*' | head -1 || echo "0")
+    # Fallback: try to estimate from the human-readable size
+    if [ "$IMAGE_SIZE_BYTES" = "0" ] || [ -z "$IMAGE_SIZE_BYTES" ]; then
+        IMAGE_SIZE_BYTES=0
+    fi
+elif command -v docker &>/dev/null; then
     IMAGE_SIZE=$(docker images benchmark-image:latest --format "{{.Size}}" 2>/dev/null | head -n1 || echo "N/A")
     IMAGE_SIZE_BYTES=$(docker image inspect benchmark-image:latest --format "{{.Size}}" 2>/dev/null || echo "0")
-elif command -v buildah &>/dev/null; then
-    IMAGE_SIZE=$(buildah images benchmark-image:latest --format "{{.Size}}" 2>/dev/null | head -n1 || echo "N/A")
 fi
 
 # ------------------------------------------------------------------
