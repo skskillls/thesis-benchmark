@@ -184,4 +184,4 @@ EOF
 echo "=== Result: ${DURATION}s | RAM: ${PEAK_MEM_MB}MB | CPU: ${CPU_PERCENT}% | Cache: ${CACHE_HIT_RATIO} ==="
 
 rm -f "$METRICS_FILE" "$BUILD_LOG"
-exit $BUILD_EXIT_CODE
+exit $BUILD_EXIT_CODE 
