@@ -151,11 +151,7 @@ if ! [[ "$CACHE_HITS" =~ ^[0-9]+$ ]]; then CACHE_HITS=0; fi
 if ! [[ "$CACHE_TOTAL" =~ ^[0-9]+$ ]] || [ "$CACHE_TOTAL" -eq 0 ]; then CACHE_TOTAL=1; fi
 
 # Calculate ratio - ONLY use awk (bc outputs .1250 without leading zero = invalid JSON)
-# awk with printf "%.4f" always outputs 0.1250 format correctly
 CACHE_HIT_RATIO=$(LC_ALL=C awk -v hits="$CACHE_HITS" -v total="$CACHE_TOTAL" 'BEGIN {printf "%.4f", hits / total}')
-
-# Debug output
-echo "DEBUG: CACHE_HITS=$CACHE_HITS, CACHE_TOTAL=$CACHE_TOTAL, CACHE_HIT_RATIO=$CACHE_HIT_RATIO"
 
 # ------------------------------------------------------------------
 # JSON EXPORT

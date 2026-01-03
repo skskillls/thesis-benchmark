@@ -22,8 +22,9 @@ case $SERVICE in
         echo "Modified $SERVICE/package.json version"
         ;;
     service-python)
-        echo "# Dirty cache modification: $TIMESTAMP" >> "$SERVICE/requirements.txt"
-        echo "Modified $SERVICE/requirements.txt"
+        # Modify main.py instead of requirements.txt to avoid triggering pip install
+        echo "# Dirty cache modification: $TIMESTAMP" >> "$SERVICE/main.py"
+        echo "Modified $SERVICE/main.py"
         ;;
     *)
         echo "Unknown service: $SERVICE"
