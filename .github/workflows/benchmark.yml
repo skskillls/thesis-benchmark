@@ -120,10 +120,15 @@ jobs:
           # Image size from tarball
           IMAGE_SIZE_BYTES=$(stat -c%s image.tar 2>/dev/null || echo "0")
           
-          # Cache parsing
-          CACHE_HITS=$(grep -c "Using caching version" /tmp/build.log || echo "0")
-          CACHE_TOTAL=$(grep -cE "^(RUN|COPY|ADD|FROM)" /tmp/build.log || echo "1")
-          [ "$CACHE_TOTAL" -eq 0 ] && CACHE_TOTAL=1
+          # Cache parsing with proper integer handling
+          CACHE_HITS=$(grep -c "Using caching version" /tmp/build.log 2>/dev/null || true)
+          CACHE_TOTAL=$(grep -cE "(RUN|COPY|ADD|FROM)" /tmp/build.log 2>/dev/null || true)
+          CACHE_HITS=$(echo "$CACHE_HITS" | tr -d '[:space:]')
+          CACHE_TOTAL=$(echo "$CACHE_TOTAL" | tr -d '[:space:]')
+          CACHE_HITS=${CACHE_HITS:-0}
+          CACHE_TOTAL=${CACHE_TOTAL:-1}
+          if ! [[ "$CACHE_HITS" =~ ^[0-9]+$ ]]; then CACHE_HITS=0; fi
+          if ! [[ "$CACHE_TOTAL" =~ ^[0-9]+$ ]] || [ "$CACHE_TOTAL" -eq 0 ]; then CACHE_TOTAL=1; fi
           CACHE_HIT_RATIO=$(awk "BEGIN {printf \"%.4f\", $CACHE_HITS / $CACHE_TOTAL}")
           
           cat > results/kaniko_${{ matrix.service }}_${{ matrix.type }}_${{ env.CACHE_SCENARIO }}_run${{ env.RUN_NUMBER }}.json << EOF
@@ -236,6 +241,7 @@ jobs:
         with:
           image: scan-image:latest
           output-file: sbom-${{ matrix.service }}.spdx.json
+          upload-artifact: false
 
       - uses: actions/upload-artifact@v4
         with:

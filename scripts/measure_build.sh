@@ -96,19 +96,31 @@ fi
 # ------------------------------------------------------------------
 # CACHE HIT RATIO
 # ------------------------------------------------------------------
+CACHE_HITS=0
+CACHE_TOTAL=1
+
 case $TOOL in
     buildkit)
-        CACHE_HITS=$(echo "$BUILD_OUTPUT" | grep -c "CACHED" || echo "0")
-        CACHE_TOTAL=$(echo "$BUILD_OUTPUT" | grep -cE "^\#[0-9]+" || echo "1");;
+        CACHE_HITS=$(echo "$BUILD_OUTPUT" | grep -c "CACHED" 2>/dev/null || true)
+        CACHE_TOTAL=$(echo "$BUILD_OUTPUT" | grep -cE "#[0-9]+" 2>/dev/null || true);;
     kaniko)
-        CACHE_HITS=$(echo "$BUILD_OUTPUT" | grep -c "Using caching version" || echo "0")
-        CACHE_TOTAL=$(echo "$BUILD_OUTPUT" | grep -cE "^(RUN|COPY|ADD|FROM)" || echo "1");;
+        CACHE_HITS=$(echo "$BUILD_OUTPUT" | grep -c "Using caching version" 2>/dev/null || true)
+        CACHE_TOTAL=$(echo "$BUILD_OUTPUT" | grep -cE "(RUN|COPY|ADD|FROM)" 2>/dev/null || true);;
     buildah)
-        CACHE_HITS=$(echo "$BUILD_OUTPUT" | grep -c "Using cache" || echo "0")
-        CACHE_TOTAL=$(echo "$BUILD_OUTPUT" | grep -cE "^STEP" || echo "1");;
+        CACHE_HITS=$(echo "$BUILD_OUTPUT" | grep -c "Using cache" 2>/dev/null || true)
+        CACHE_TOTAL=$(echo "$BUILD_OUTPUT" | grep -cE "STEP" 2>/dev/null || true);;
 esac
 
-[ "$CACHE_TOTAL" -eq 0 ] && CACHE_TOTAL=1
+# Ensure numeric values (strip whitespace, default to 0/1)
+CACHE_HITS=$(echo "$CACHE_HITS" | tr -d '[:space:]')
+CACHE_TOTAL=$(echo "$CACHE_TOTAL" | tr -d '[:space:]')
+CACHE_HITS=${CACHE_HITS:-0}
+CACHE_TOTAL=${CACHE_TOTAL:-1}
+
+# Ensure they are valid integers
+if ! [[ "$CACHE_HITS" =~ ^[0-9]+$ ]]; then CACHE_HITS=0; fi
+if ! [[ "$CACHE_TOTAL" =~ ^[0-9]+$ ]] || [ "$CACHE_TOTAL" -eq 0 ]; then CACHE_TOTAL=1; fi
+
 CACHE_HIT_RATIO=$(awk "BEGIN {printf \"%.4f\", $CACHE_HITS / $CACHE_TOTAL}")
 
 # ------------------------------------------------------------------
