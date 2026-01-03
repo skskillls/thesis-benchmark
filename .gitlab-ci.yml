@@ -1,57 +1,61 @@
 stages:
   - benchmark
+  - security
+  - aggregate
 
-# Global Cache Configuration:
-# GitLab CI caching is explicitly disabled (empty hash).
-# Rationale: To ensure scientific validity, every build must run in a clean environment.
-# This prevents GitLab's file-based caching from influencing the performance metrics 
-# of the container build tools being tested.
+variables:
+  CACHE_SCENARIO: "cold"
+  RUN_NUMBER: "1"
+  CI_SYSTEM: "gitlab-ci"
+
+# Disable GitLab caching for scientific validity
 cache: {}
 
-# ==================================================================================
-# TOOL 1: DOCKER BUILDKIT (Standard Architecture)
-# Context: Tests the traditional client-server architecture using Docker-in-Docker.
-# Reference: https://docs.gitlab.com/ee/ci/docker/using_docker_build.html
-# ==================================================================================
-buildkit_job:
+# ==========================================================================
+# BUILDKIT
+# ==========================================================================
+buildkit:
   stage: benchmark
-  retry: 2
   image: docker:latest
   services:
-    # The 'dind' service runs the Docker daemon in a separate container.
-    # Note: This typically requires a runner with 'privileged' mode enabled.
     - docker:dind
   variables:
-    # Enforce the use of the modern BuildKit engine for performance parity.
     DOCKER_BUILDKIT: 1
-    # Networking Configuration:
-    # Since the daemon runs as a sidecar service, it is accessible via TCP network,
-    # not via the local Unix socket (/var/run/docker.sock).
     DOCKER_HOST: tcp://docker:2375
-    # Disable TLS to reduce configuration complexity for this benchmark scope.
     DOCKER_TLS_CERTDIR: ""
   parallel:
     matrix:
       - SERVICE: [service-go, service-node, service-python]
         TYPE: [baseline, optimized]
   script:
-    - echo "Starting BuildKit build for $SERVICE ($TYPE)..."
-    # Wait strictly to ensure the dind service is fully initialized before connection.
+    - apk add --no-cache bash bc coreutils
+    - chmod +x scripts/*.sh
     - sleep 5
-    # Execution:
-    # The build is performed without pushing to a registry to isolate build computation time.
-    - docker build --file $SERVICE/Dockerfile.$TYPE $SERVICE
+    
+    # Scenario handling
+    - |
+      if [ "$CACHE_SCENARIO" = "dirty" ]; then
+        docker build --file $SERVICE/Dockerfile.$TYPE -t benchmark-image:latest $SERVICE
+        ./scripts/simulate_dirty_cache.sh $SERVICE
+      fi
+    
+    # Build with metrics
+    - |
+      ./scripts/measure_build.sh \
+        buildkit $SERVICE $TYPE $CACHE_SCENARIO $RUN_NUMBER \
+        docker build --progress=plain \
+          --file $SERVICE/Dockerfile.$TYPE \
+          -t benchmark-image:latest $SERVICE
+  artifacts:
+    paths: [results/]
+    expire_in: 1 week
 
-# ==================================================================================
-# TOOL 2: KANIKO (Daemonless Architecture)
-# Context: Tests a fully unprivileged, userspace-only build process.
-# Reference: https://github.com/GoogleContainerTools/kaniko
-# ==================================================================================
-kaniko_job:
+# ==========================================================================
+# KANIKO
+# ==========================================================================
+kaniko:
   stage: benchmark
-  retry: 2
   image:
-    # The debug tag is required to provide a shell (/busybox/sh) for GitLab CI.
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
   parallel:
@@ -59,36 +63,135 @@ kaniko_job:
       - SERVICE: [service-go, service-node, service-python]
         TYPE: [baseline, optimized]
   script:
-    - echo "Building $SERVICE with $TYPE using Kaniko"
-    # Execution:
-    # --context: Explicitly defines the build context root.
-    # --no-push: Prevents network upload latency from skewing build time results.
-    - /kaniko/executor --context $CI_PROJECT_DIR/$SERVICE --dockerfile $CI_PROJECT_DIR/$SERVICE/Dockerfile.$TYPE --no-push
+    # Dirty cache modification (busybox shell)
+    - |
+      if [ "$CACHE_SCENARIO" = "dirty" ]; then
+        case $SERVICE in
+          service-go) echo "// Dirty" >> $SERVICE/main.go;;
+          service-node) sed -i 's/1.0.0/1.0.999/' $SERVICE/package.json;;
+          service-python) echo "# Dirty" >> $SERVICE/requirements.txt;;
+        esac
+      fi
+    
+    # Build with timing (no GNU time in Kaniko)
+    - START_TIME=$(date +%s)
+    - |
+      /kaniko/executor \
+        --context $CI_PROJECT_DIR/$SERVICE \
+        --dockerfile $CI_PROJECT_DIR/$SERVICE/Dockerfile.$TYPE \
+        --verbosity=info \
+        --no-push \
+        --tarPath /tmp/image.tar 2>&1 | tee /tmp/build.log || true
+    - END_TIME=$(date +%s)
+    - DURATION=$((END_TIME - START_TIME))
+    
+    # Parse results
+    - IMAGE_SIZE_BYTES=$(stat -c%s /tmp/image.tar 2>/dev/null || echo "0")
+    - CACHE_HITS=$(grep -c "Using caching" /tmp/build.log || echo "0")
+    - CACHE_TOTAL=$(grep -cE "^(RUN|COPY)" /tmp/build.log || echo "1")
+    - |
+      mkdir -p results
+      cat > results/kaniko_${SERVICE}_${TYPE}_${CACHE_SCENARIO}_run${RUN_NUMBER}.json << EOF
+      {
+        "tool": "kaniko",
+        "service": "$SERVICE",
+        "dockerfile_type": "$TYPE",
+        "cache_scenario": "$CACHE_SCENARIO",
+        "run_number": $RUN_NUMBER,
+        "ci_system": "gitlab-ci",
+        "performance": {
+          "build_duration_seconds": $DURATION,
+          "cpu_percent": 0,
+          "memory_peak_mb": 0,
+          "image_size_bytes": $IMAGE_SIZE_BYTES,
+          "cache_hits": $CACHE_HITS,
+          "cache_total_steps": $CACHE_TOTAL
+        }
+      }
+      EOF
+  artifacts:
+    paths: [results/]
+    expire_in: 1 week
 
-# ==================================================================================
-# TOOL 3: BUILDAH (OCI-Compliant Daemonless Architecture)
-# Context: Tests Buildah's performance within a containerized environment.
-# Reference: https://github.com/containers/buildah/blob/main/docs/tutorials/05-openshift-rootless-build.md
-# ==================================================================================
-buildah_job:
+# ==========================================================================
+# BUILDAH
+# ==========================================================================
+buildah:
   stage: benchmark
-  retry: 2
   image: quay.io/buildah/stable
   variables:
-    # Isolation Strategy:
-    # 'chroot' is selected instead of 'oci' (namespaces).
-    # Rationale: Standard Kubernetes/GitLab runners often block the 'unshare' syscall
-    # required for user namespaces. 'chroot' provides file-level isolation compatible
-    # with restricted environments.
     BUILDAH_ISOLATION: chroot
   parallel:
     matrix:
       - SERVICE: [service-go, service-node, service-python]
         TYPE: [baseline, optimized]
   script:
-    - echo "Building $SERVICE with $TYPE using Buildah"
-    # Storage Driver Configuration:
-    # 'vfs' is enforced because the standard 'overlay' driver often fails when mounted
-    # inside another container's OverlayFS (filesystem stacking issue).
-    # While 'vfs' may impact I/O performance, it guarantees functional stability.
-    - buildah build --storage-driver=vfs --file $SERVICE/Dockerfile.$TYPE $SERVICE
+    - dnf install -y time bc 2>/dev/null || true
+    - chmod +x scripts/*.sh
+    
+    - |
+      if [ "$CACHE_SCENARIO" = "dirty" ]; then
+        buildah build --storage-driver=vfs --layers \
+          --file $SERVICE/Dockerfile.$TYPE -t benchmark-image:latest $SERVICE || true
+        ./scripts/simulate_dirty_cache.sh $SERVICE
+      fi
+    
+    - |
+      ./scripts/measure_build.sh \
+        buildah $SERVICE $TYPE $CACHE_SCENARIO $RUN_NUMBER \
+        buildah build --storage-driver=vfs --layers \
+          --file $SERVICE/Dockerfile.$TYPE \
+          -t benchmark-image:latest $SERVICE
+  artifacts:
+    paths: [results/]
+    expire_in: 1 week
+
+# ==========================================================================
+# SECURITY
+# ==========================================================================
+security:
+  stage: security
+  image: docker:latest
+  services:
+    - docker:dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+  parallel:
+    matrix:
+      - SERVICE: [service-go, service-node, service-python]
+  script:
+    - apk add --no-cache curl
+    - sleep 5
+    - docker build --file $SERVICE/Dockerfile.optimized -t scan-image:latest $SERVICE
+    
+    # Trivy
+    - curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+    - trivy image --format json -o trivy-${SERVICE}.json scan-image:latest
+    
+    # Syft SBOM
+    - curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+    - syft scan-image:latest -o spdx-json > sbom-${SERVICE}.spdx.json
+  artifacts:
+    paths:
+      - trivy-*.json
+      - sbom-*.spdx.json
+    expire_in: 1 week
+
+# ==========================================================================
+# AGGREGATE
+# ==========================================================================
+aggregate:
+  stage: aggregate
+  image: python:3.11-slim
+  needs: [buildkit, kaniko, buildah, security]
+  script:
+    - mkdir -p final-results
+    - find . -name "*.json" -path "./results/*" -exec cp {} final-results/ \;
+    - pip install --quiet pandas
+    - export RESULTS_DIR=final-results
+    - python scripts/collect_metrics.py
+  artifacts:
+    paths:
+      - final-results/
+    expire_in: 1 month
