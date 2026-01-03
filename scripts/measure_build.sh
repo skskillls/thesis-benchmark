@@ -150,8 +150,26 @@ CACHE_TOTAL=${CACHE_TOTAL:-1}
 if ! [[ "$CACHE_HITS" =~ ^[0-9]+$ ]]; then CACHE_HITS=0; fi
 if ! [[ "$CACHE_TOTAL" =~ ^[0-9]+$ ]] || [ "$CACHE_TOTAL" -eq 0 ]; then CACHE_TOTAL=1; fi
 
-# Calculate ratio with forced POSIX locale (ensures decimal point, not comma)
-CACHE_HIT_RATIO=$(LC_ALL=C awk -v hits="$CACHE_HITS" -v total="$CACHE_TOTAL" 'BEGIN {printf "%.4f", hits / total}')
+# Calculate ratio - ensure it's a proper decimal between 0 and 1
+# Use bc for reliable decimal math, with awk fallback
+if command -v bc &>/dev/null; then
+    CACHE_HIT_RATIO=$(echo "scale=4; $CACHE_HITS / $CACHE_TOTAL" | LC_ALL=C bc)
+else
+    CACHE_HIT_RATIO=$(LC_ALL=C awk -v hits="$CACHE_HITS" -v total="$CACHE_TOTAL" 'BEGIN {printf "%.4f", hits / total}')
+fi
+
+# Ensure the ratio has a leading zero (0.xxxx format, not .xxxx)
+case "$CACHE_HIT_RATIO" in
+    .*) CACHE_HIT_RATIO="0$CACHE_HIT_RATIO" ;;
+esac
+
+# Fallback if still invalid
+if ! [[ "$CACHE_HIT_RATIO" =~ ^[0-9]*\.[0-9]+$ ]]; then
+    CACHE_HIT_RATIO="0.0000"
+fi
+
+# Debug output
+echo "DEBUG: CACHE_HITS=$CACHE_HITS, CACHE_TOTAL=$CACHE_TOTAL, CACHE_HIT_RATIO=$CACHE_HIT_RATIO"
 
 # ------------------------------------------------------------------
 # JSON EXPORT
