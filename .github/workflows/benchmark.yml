@@ -103,6 +103,7 @@ jobs:
       - name: Build with Metrics
         run: |
           mkdir -p results
+          START_TIMESTAMP=$(date -Iseconds)
           START_TIME=$(date +%s.%N)
           
           docker run --rm \
@@ -119,6 +120,7 @@ jobs:
           
           # Image size from tarball
           IMAGE_SIZE_BYTES=$(stat -c%s image.tar 2>/dev/null || echo "0")
+          IMAGE_SIZE="${IMAGE_SIZE_BYTES}B"
           
           # Cache parsing with proper integer handling
           CACHE_HITS=$(grep -c "Using caching version" /tmp/build.log 2>/dev/null || true)
@@ -138,16 +140,21 @@ jobs:
             "dockerfile_type": "${{ matrix.type }}",
             "cache_scenario": "${{ env.CACHE_SCENARIO }}",
             "run_number": ${{ env.RUN_NUMBER }},
+            "timestamp": "$START_TIMESTAMP",
             "ci_system": "github-actions",
             "performance": {
               "build_duration_seconds": $DURATION,
               "cpu_percent": 0,
+              "cpu_user_seconds": 0,
+              "cpu_system_seconds": 0,
               "memory_peak_mb": 0,
+              "image_size": "$IMAGE_SIZE",
               "image_size_bytes": $IMAGE_SIZE_BYTES,
               "cache_hits": $CACHE_HITS,
               "cache_total_steps": $CACHE_TOTAL,
               "cache_hit_ratio": $CACHE_HIT_RATIO
-            }
+            },
+            "exit_code": 0
           }
           EOF
 

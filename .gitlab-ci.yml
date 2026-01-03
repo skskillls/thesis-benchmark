@@ -73,7 +73,8 @@ kaniko:
         esac
       fi
     
-    # Build with timing (no GNU time in Kaniko)
+    # Capture timestamp (busybox compatible)
+    - START_TIMESTAMP=$(date +%Y-%m-%dT%H:%M:%S%z 2>/dev/null || date +%Y-%m-%dT%H:%M:%S)
     - START_TIME=$(date +%s)
     - |
       /kaniko/executor \
@@ -85,10 +86,16 @@ kaniko:
     - END_TIME=$(date +%s)
     - DURATION=$((END_TIME - START_TIME))
     
-    # Parse results
+    # Parse results with proper fallbacks
     - IMAGE_SIZE_BYTES=$(stat -c%s /tmp/image.tar 2>/dev/null || echo "0")
-    - CACHE_HITS=$(grep -c "Using caching" /tmp/build.log || echo "0")
-    - CACHE_TOTAL=$(grep -cE "^(RUN|COPY)" /tmp/build.log || echo "1")
+    - IMAGE_SIZE="${IMAGE_SIZE_BYTES}B"
+    - CACHE_HITS=$(grep -c "Using caching" /tmp/build.log 2>/dev/null || true)
+    - CACHE_TOTAL=$(grep -cE "(RUN|COPY|ADD|FROM)" /tmp/build.log 2>/dev/null || true)
+    - CACHE_HITS=${CACHE_HITS:-0}
+    - CACHE_TOTAL=${CACHE_TOTAL:-1}
+    - |
+      if [ -z "$CACHE_HITS" ] || [ "$CACHE_HITS" = "" ]; then CACHE_HITS=0; fi
+      if [ -z "$CACHE_TOTAL" ] || [ "$CACHE_TOTAL" = "" ] || [ "$CACHE_TOTAL" = "0" ]; then CACHE_TOTAL=1; fi
     - |
       mkdir -p results
       cat > results/kaniko_${SERVICE}_${TYPE}_${CACHE_SCENARIO}_run${RUN_NUMBER}.json << EOF
@@ -98,15 +105,21 @@ kaniko:
         "dockerfile_type": "$TYPE",
         "cache_scenario": "$CACHE_SCENARIO",
         "run_number": $RUN_NUMBER,
+        "timestamp": "$START_TIMESTAMP",
         "ci_system": "gitlab-ci",
         "performance": {
           "build_duration_seconds": $DURATION,
           "cpu_percent": 0,
+          "cpu_user_seconds": 0,
+          "cpu_system_seconds": 0,
           "memory_peak_mb": 0,
+          "image_size": "$IMAGE_SIZE",
           "image_size_bytes": $IMAGE_SIZE_BYTES,
           "cache_hits": $CACHE_HITS,
-          "cache_total_steps": $CACHE_TOTAL
-        }
+          "cache_total_steps": $CACHE_TOTAL,
+          "cache_hit_ratio": 0
+        },
+        "exit_code": 0
       }
       EOF
   artifacts:
