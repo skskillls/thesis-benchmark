@@ -57,7 +57,7 @@ jobs:
       - name: Test Node Service
         run: |
           cd service-node
-          npm ci
+          npm install
           npm test
       
       - name: Test Python Service
