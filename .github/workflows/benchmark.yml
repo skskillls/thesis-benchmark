@@ -25,6 +25,47 @@ env:
 
 jobs:
   # ==========================================================================
+  # TEST - Runs before all build jobs
+  # ==========================================================================
+  test:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Test Go Service
+        run: |
+          cd service-go
+          go test -v
+      
+      - name: Test Node Service
+        run: |
+          cd service-node
+          npm ci
+          npm test
+      
+      - name: Test Python Service
+        run: |
+          cd service-python
+          pip install -r requirements.txt
+          pytest -v
+
+  # ==========================================================================
   # BUILDKIT
   # ==========================================================================
   buildkit:
