@@ -1,0 +1,22 @@
+{
+  "tool": "kaniko",
+  "service": "service-go",
+  "dockerfile_type": "optimized",
+  "cache_scenario": "dirty",
+  "run_number": 3,
+  "timestamp": "2026-01-04T12:08:58+00:00",
+  "ci_system": "github-actions",
+  "performance": {
+    "build_duration_seconds": 36.557498247,
+    "cpu_percent": 0,
+    "cpu_user_seconds": 0,
+    "cpu_system_seconds": 0,
+    "memory_peak_mb": 0,
+    "image_size": "7.6MB",
+    "image_size_bytes": 7985152,
+    "cache_hits": 0,
+    "cache_total_steps": 6,
+    "cache_hit_ratio": 0.0000
+  },
+  "exit_code": 0
+}

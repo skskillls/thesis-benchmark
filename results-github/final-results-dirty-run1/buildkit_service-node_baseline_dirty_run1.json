@@ -1,0 +1,22 @@
+{
+  "tool": "buildkit",
+  "service": "service-node",
+  "dockerfile_type": "baseline",
+  "cache_scenario": "dirty",
+  "run_number": 1,
+  "timestamp": "2026-01-04T12:01:22+00:00",
+  "ci_system": "github-actions",
+  "performance": {
+    "build_duration_seconds": 26.47,
+    "cpu_percent": 2,
+    "cpu_user_seconds": 0.41,
+    "cpu_system_seconds": 0.23,
+    "memory_peak_mb": 62.96,
+    "image_size": "263MB",
+    "image_size_bytes": 263179076,
+    "cache_hits": 1,
+    "cache_total_steps": 51,
+    "cache_hit_ratio": 0.0196
+  },
+  "exit_code": 0
+}

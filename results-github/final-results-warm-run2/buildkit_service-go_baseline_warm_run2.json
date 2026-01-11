@@ -1,0 +1,22 @@
+{
+  "tool": "buildkit",
+  "service": "service-go",
+  "dockerfile_type": "baseline",
+  "cache_scenario": "warm",
+  "run_number": 2,
+  "timestamp": "2026-01-04T11:47:09+00:00",
+  "ci_system": "github-actions",
+  "performance": {
+    "build_duration_seconds": 3.49,
+    "cpu_percent": 58,
+    "cpu_user_seconds": 1.42,
+    "cpu_system_seconds": 0.62,
+    "memory_peak_mb": 64.56,
+    "image_size": "884MB",
+    "image_size_bytes": 884072469,
+    "cache_hits": 3,
+    "cache_total_steps": 30,
+    "cache_hit_ratio": 0.1000
+  },
+  "exit_code": 0
+}

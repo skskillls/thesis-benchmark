@@ -1,0 +1,13 @@
+tool,service,dockerfile_type,cache_scenario,run_number,timestamp,ci_system,build_duration_seconds,cpu_percent,cpu_user_seconds,cpu_system_seconds,memory_peak_mb,image_size,image_size_bytes,cache_hits,cache_total_steps,cache_hit_ratio,exit_code
+kaniko,service-node,optimized,cold,4,2026-01-10T14:14:32+0000,gitlab-ci,19,0,0,0,0,80.4MB,84277248,0,1,0,0
+kaniko,service-go,baseline,cold,4,2026-01-10T14:14:30+0000,gitlab-ci,22,0,0,0,0,305.1MB,319912960,0,1,0,0
+kaniko,service-node,baseline,cold,4,2026-01-10T14:14:31+0000,gitlab-ci,20,0,0,0,0,80.4MB,84277760,0,1,0,0
+kaniko,service-go,optimized,cold,4,2026-01-10T14:14:30+0000,gitlab-ci,19,0,0,0,0,7.6MB,7985152,0,1,0,0
+kaniko,service-python,optimized,cold,4,2026-01-10T14:14:34+0000,gitlab-ci,24,0,0,0,0,97.4MB,102146048,0,1,0,0
+kaniko,service-python,baseline,cold,4,2026-01-10T14:14:32+0000,gitlab-ci,20,0,0,0,0,97.4MB,102146048,0,1,0,0
+kaniko,service-node,optimized,cold,4,2026-01-10T14:14:32+0000,gitlab-ci,19,0,0,0,0,80.4MB,84277248,0,1,0,0
+kaniko,service-go,baseline,cold,4,2026-01-10T14:14:30+0000,gitlab-ci,22,0,0,0,0,305.1MB,319912960,0,1,0,0
+kaniko,service-node,baseline,cold,4,2026-01-10T14:14:31+0000,gitlab-ci,20,0,0,0,0,80.4MB,84277760,0,1,0,0
+kaniko,service-go,optimized,cold,4,2026-01-10T14:14:30+0000,gitlab-ci,19,0,0,0,0,7.6MB,7985152,0,1,0,0
+kaniko,service-python,optimized,cold,4,2026-01-10T14:14:34+0000,gitlab-ci,24,0,0,0,0,97.4MB,102146048,0,1,0,0
+kaniko,service-python,baseline,cold,4,2026-01-10T14:14:32+0000,gitlab-ci,20,0,0,0,0,97.4MB,102146048,0,1,0,0

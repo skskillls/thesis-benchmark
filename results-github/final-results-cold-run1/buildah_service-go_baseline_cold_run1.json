@@ -1,0 +1,22 @@
+{
+  "tool": "buildah",
+  "service": "service-go",
+  "dockerfile_type": "baseline",
+  "cache_scenario": "cold",
+  "run_number": 1,
+  "timestamp": "2026-01-04T11:23:48+00:00",
+  "ci_system": "github-actions",
+  "performance": {
+    "build_duration_seconds": 28.60,
+    "cpu_percent": 167,
+    "cpu_user_seconds": 41.81,
+    "cpu_system_seconds": 6.01,
+    "memory_peak_mb": 212.91,
+    "image_size": "909 MB",
+    "image_size_bytes": 0,
+    "cache_hits": 0,
+    "cache_total_steps": 5,
+    "cache_hit_ratio": 0.0000
+  },
+  "exit_code": 0
+}

@@ -1,0 +1,12 @@
+,,,build_duration_seconds,build_duration_seconds,build_duration_seconds,build_duration_seconds,build_duration_seconds
+,,,mean,std,min,max,count
+ci_system,tool,cache_scenario,,,,,
+github-actions,buildah,cold,25.59,3.95,19.82,31.97,30
+github-actions,buildah,dirty,16.54,7.65,0.58,26.64,30
+github-actions,buildah,warm,0.84,0.32,0.37,1.7,30
+github-actions,buildkit,cold,34.69,8.02,25.79,52.38,30
+github-actions,buildkit,dirty,19.98,9.4,1.44,30.55,30
+github-actions,buildkit,warm,1.47,1.01,0.35,3.83,30
+github-actions,kaniko,cold,35.3,6.19,28.13,50.07,30
+github-actions,kaniko,dirty,35.63,6.3,28.78,49.3,30
+github-actions,kaniko,warm,36.33,7.02,26.81,48.85,30

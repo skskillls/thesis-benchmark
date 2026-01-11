@@ -1,0 +1,22 @@
+{
+  "tool": "buildah",
+  "service": "service-python",
+  "dockerfile_type": "optimized",
+  "cache_scenario": "warm",
+  "run_number": 1,
+  "timestamp": "2026-01-04T11:43:12+00:00",
+  "ci_system": "github-actions",
+  "performance": {
+    "build_duration_seconds": 1.10,
+    "cpu_percent": 30,
+    "cpu_user_seconds": 0.18,
+    "cpu_system_seconds": 0.15,
+    "memory_peak_mb": 33.44,
+    "image_size": "290 MB",
+    "image_size_bytes": 0,
+    "cache_hits": 5,
+    "cache_total_steps": 6,
+    "cache_hit_ratio": 0.8333
+  },
+  "exit_code": 0
+}

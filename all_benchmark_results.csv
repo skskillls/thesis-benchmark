@@ -1,0 +1,301 @@
+tool,service,dockerfile_type,cache_scenario,run_number,timestamp,ci_system,build_duration_seconds,cpu_percent,cpu_user_seconds,cpu_system_seconds,memory_peak_mb,image_size,image_size_bytes,cache_hits,cache_total_steps,cache_hit_ratio,exit_code,source_file
+buildah,service-go,baseline,cold,1,2026-01-04T11:23:48+00:00,github-actions,28.6,167,41.81,6.01,212.91,909 MB,0,0,5,0.0,0,buildah_service-go_baseline_cold_run1.json
+buildah,service-go,baseline,cold,2,2026-01-04T11:28:16+00:00,github-actions,29.84,172,42.21,9.37,202.88,909 MB,0,0,5,0.0,0,buildah_service-go_baseline_cold_run2.json
+buildah,service-go,baseline,cold,3,2026-01-04T11:32:03+00:00,github-actions,29.24,161,41.34,5.92,212.98,909 MB,0,0,5,0.0,0,buildah_service-go_baseline_cold_run3.json
+buildah,service-go,baseline,cold,4,2026-01-04T11:35:34+00:00,github-actions,31.97,164,43.0,9.43,211.01,909 MB,0,0,5,0.0,0,buildah_service-go_baseline_cold_run4.json
+buildah,service-go,baseline,cold,5,2026-01-04T11:39:13+00:00,github-actions,30.72,167,42.2,9.25,217.3,909 MB,0,0,5,0.0,0,buildah_service-go_baseline_cold_run5.json
+buildah,service-go,baseline,dirty,1,2026-01-04T12:01:25+00:00,github-actions,17.41,175,26.39,4.15,215.28,909 MB,0,1,5,0.2,0,buildah_service-go_baseline_dirty_run1.json
+buildah,service-go,baseline,dirty,2,2026-01-04T12:05:30+00:00,github-actions,17.28,173,25.97,3.99,206.22,909 MB,0,1,5,0.2,0,buildah_service-go_baseline_dirty_run2.json
+buildah,service-go,baseline,dirty,3,2026-01-04T12:09:45+00:00,github-actions,17.26,174,26.03,4.02,212.98,909 MB,0,1,5,0.2,0,buildah_service-go_baseline_dirty_run3.json
+buildah,service-go,baseline,dirty,4,2026-01-04T12:13:50+00:00,github-actions,17.17,176,26.09,4.16,210.56,909 MB,0,1,5,0.2,0,buildah_service-go_baseline_dirty_run4.json
+buildah,service-go,baseline,dirty,5,2026-01-04T12:18:08+00:00,github-actions,18.34,172,27.25,4.41,213.16,909 MB,0,1,5,0.2,0,buildah_service-go_baseline_dirty_run5.json
+buildah,service-go,baseline,warm,1,2026-01-04T11:43:23+00:00,github-actions,1.05,23,0.12,0.11,34.41,909 MB,0,4,5,0.8,0,buildah_service-go_baseline_warm_run1.json
+buildah,service-go,baseline,warm,2,2026-01-04T11:47:00+00:00,github-actions,0.77,28,0.11,0.1,34.1,909 MB,0,4,5,0.8,0,buildah_service-go_baseline_warm_run2.json
+buildah,service-go,baseline,warm,3,2026-01-04T11:50:31+00:00,github-actions,0.39,59,0.12,0.1,34.35,909 MB,0,4,5,0.8,0,buildah_service-go_baseline_warm_run3.json
+buildah,service-go,baseline,warm,4,2026-01-04T11:54:35+00:00,github-actions,0.39,59,0.1,0.13,33.9,909 MB,0,4,5,0.8,0,buildah_service-go_baseline_warm_run4.json
+buildah,service-go,baseline,warm,5,2026-01-04T11:58:08+00:00,github-actions,0.59,46,0.15,0.11,34.33,909 MB,0,4,5,0.8,0,buildah_service-go_baseline_warm_run5.json
+buildah,service-go,optimized,cold,1,2026-01-04T11:23:47+00:00,github-actions,29.98,167,41.26,8.82,209.03,15.4 MB,0,0,9,0.0,0,buildah_service-go_optimized_cold_run1.json
+buildah,service-go,optimized,cold,2,2026-01-04T11:28:14+00:00,github-actions,30.75,168,42.69,9.0,211.17,15.4 MB,0,0,9,0.0,0,buildah_service-go_optimized_cold_run2.json
+buildah,service-go,optimized,cold,3,2026-01-04T11:32:02+00:00,github-actions,29.99,168,41.67,8.96,210.15,15.4 MB,0,0,9,0.0,0,buildah_service-go_optimized_cold_run3.json
+buildah,service-go,optimized,cold,4,2026-01-04T11:35:41+00:00,github-actions,31.57,158,41.33,8.65,210.21,15.4 MB,0,0,9,0.0,0,buildah_service-go_optimized_cold_run4.json
+buildah,service-go,optimized,cold,5,2026-01-04T11:39:12+00:00,github-actions,31.7,159,41.88,8.68,205.91,15.4 MB,0,0,9,0.0,0,buildah_service-go_optimized_cold_run5.json
+buildah,service-go,optimized,dirty,1,2026-01-04T12:01:23+00:00,github-actions,16.54,176,25.53,3.61,211.45,15.4 MB,0,3,9,0.3333,0,buildah_service-go_optimized_dirty_run1.json
+buildah,service-go,optimized,dirty,2,2026-01-04T12:05:28+00:00,github-actions,17.77,161,25.13,3.56,209.83,15.4 MB,0,3,9,0.3333,0,buildah_service-go_optimized_dirty_run2.json
+buildah,service-go,optimized,dirty,3,2026-01-04T12:09:38+00:00,github-actions,16.21,169,24.66,2.75,210.66,15.4 MB,0,3,9,0.3333,0,buildah_service-go_optimized_dirty_run3.json
+buildah,service-go,optimized,dirty,4,2026-01-04T12:13:54+00:00,github-actions,17.31,173,26.28,3.79,211.96,15.4 MB,0,3,9,0.3333,0,buildah_service-go_optimized_dirty_run4.json
+buildah,service-go,optimized,dirty,5,2026-01-04T12:18:01+00:00,github-actions,16.6,172,25.1,3.55,211.23,15.4 MB,0,3,9,0.3333,0,buildah_service-go_optimized_dirty_run5.json
+buildah,service-go,optimized,warm,1,2026-01-04T11:43:20+00:00,github-actions,1.7,29,0.26,0.24,36.05,15.4 MB,0,7,9,0.7778,0,buildah_service-go_optimized_warm_run1.json
+buildah,service-go,optimized,warm,2,2026-01-04T11:46:55+00:00,github-actions,1.58,28,0.25,0.2,36.05,15.4 MB,0,7,9,0.7778,0,buildah_service-go_optimized_warm_run2.json
+buildah,service-go,optimized,warm,3,2026-01-04T11:50:27+00:00,github-actions,0.85,63,0.27,0.26,36.28,15.4 MB,0,7,9,0.7778,0,buildah_service-go_optimized_warm_run3.json
+buildah,service-go,optimized,warm,4,2026-01-04T11:54:30+00:00,github-actions,0.84,63,0.26,0.26,34.75,15.4 MB,0,7,9,0.7778,0,buildah_service-go_optimized_warm_run4.json
+buildah,service-go,optimized,warm,5,2026-01-04T11:58:02+00:00,github-actions,1.18,49,0.31,0.27,36.26,15.4 MB,0,7,9,0.7778,0,buildah_service-go_optimized_warm_run5.json
+buildah,service-node,baseline,cold,1,2026-01-04T11:23:45+00:00,github-actions,24.7,86,14.45,6.96,304.72,274 MB,0,0,5,0.0,0,buildah_service-node_baseline_cold_run1.json
+buildah,service-node,baseline,cold,2,2026-01-04T11:28:11+00:00,github-actions,24.64,85,14.45,6.7,309.61,274 MB,0,0,5,0.0,0,buildah_service-node_baseline_cold_run2.json
+buildah,service-node,baseline,cold,3,2026-01-04T11:32:05+00:00,github-actions,26.48,80,14.39,6.94,285.35,274 MB,0,0,5,0.0,0,buildah_service-node_baseline_cold_run3.json
+buildah,service-node,baseline,cold,4,2026-01-04T11:35:30+00:00,github-actions,26.67,78,14.14,6.68,288.71,274 MB,0,0,5,0.0,0,buildah_service-node_baseline_cold_run4.json
+buildah,service-node,baseline,cold,5,2026-01-04T11:39:14+00:00,github-actions,28.35,64,13.89,4.35,290.81,274 MB,0,0,5,0.0,0,buildah_service-node_baseline_cold_run5.json
+buildah,service-node,baseline,dirty,1,2026-01-04T12:01:23+00:00,github-actions,24.11,79,12.66,6.42,295.82,274 MB,0,1,5,0.2,0,buildah_service-node_baseline_dirty_run1.json
+buildah,service-node,baseline,dirty,2,2026-01-04T12:05:22+00:00,github-actions,21.31,88,12.74,6.1,287.7,274 MB,0,1,5,0.2,0,buildah_service-node_baseline_dirty_run2.json
+buildah,service-node,baseline,dirty,3,2026-01-04T12:09:37+00:00,github-actions,21.95,83,12.11,6.12,292.59,274 MB,0,1,5,0.2,0,buildah_service-node_baseline_dirty_run3.json
+buildah,service-node,baseline,dirty,4,2026-01-04T12:13:50+00:00,github-actions,26.64,70,12.56,6.32,303.47,274 MB,0,1,5,0.2,0,buildah_service-node_baseline_dirty_run4.json
+buildah,service-node,baseline,dirty,5,2026-01-04T12:18:02+00:00,github-actions,25.88,69,11.81,6.1,291.5,274 MB,0,1,5,0.2,0,buildah_service-node_baseline_dirty_run5.json
+buildah,service-node,baseline,warm,1,2026-01-04T11:43:17+00:00,github-actions,0.37,63,0.12,0.1,35.05,274 MB,0,4,5,0.8,0,buildah_service-node_baseline_warm_run1.json
+buildah,service-node,baseline,warm,2,2026-01-04T11:47:00+00:00,github-actions,0.89,27,0.12,0.11,33.47,274 MB,0,4,5,0.8,0,buildah_service-node_baseline_warm_run2.json
+buildah,service-node,baseline,warm,3,2026-01-04T11:50:28+00:00,github-actions,0.82,28,0.13,0.1,34.22,274 MB,0,4,5,0.8,0,buildah_service-node_baseline_warm_run3.json
+buildah,service-node,baseline,warm,4,2026-01-04T11:54:28+00:00,github-actions,0.54,48,0.13,0.12,34.07,274 MB,0,4,5,0.8,0,buildah_service-node_baseline_warm_run4.json
+buildah,service-node,baseline,warm,5,2026-01-04T11:58:00+00:00,github-actions,0.81,29,0.13,0.1,33.47,274 MB,0,4,5,0.8,0,buildah_service-node_baseline_warm_run5.json
+buildah,service-node,optimized,cold,1,2026-01-04T11:23:51+00:00,github-actions,22.72,90,13.88,6.62,293.51,274 MB,0,0,6,0.0,0,buildah_service-node_optimized_cold_run1.json
+buildah,service-node,optimized,cold,2,2026-01-04T11:28:12+00:00,github-actions,22.93,92,14.37,6.76,286.8,274 MB,0,0,6,0.0,0,buildah_service-node_optimized_cold_run2.json
+buildah,service-node,optimized,cold,3,2026-01-04T11:32:03+00:00,github-actions,23.65,90,14.65,6.76,288.86,274 MB,0,0,6,0.0,0,buildah_service-node_optimized_cold_run3.json
+buildah,service-node,optimized,cold,4,2026-01-04T11:35:33+00:00,github-actions,23.24,88,14.0,6.6,307.62,274 MB,0,0,6,0.0,0,buildah_service-node_optimized_cold_run4.json
+buildah,service-node,optimized,cold,5,2026-01-04T11:39:18+00:00,github-actions,24.9,88,14.83,7.11,289.7,274 MB,0,0,6,0.0,0,buildah_service-node_optimized_cold_run5.json
+buildah,service-node,optimized,dirty,1,2026-01-04T12:01:18+00:00,github-actions,22.1,81,12.03,5.98,291.97,274 MB,0,1,6,0.1667,0,buildah_service-node_optimized_dirty_run1.json
+buildah,service-node,optimized,dirty,2,2026-01-04T12:05:20+00:00,github-actions,20.9,84,11.79,5.95,291.86,274 MB,0,1,6,0.1667,0,buildah_service-node_optimized_dirty_run2.json
+buildah,service-node,optimized,dirty,3,2026-01-04T12:09:36+00:00,github-actions,21.69,83,12.07,6.11,309.03,274 MB,0,1,6,0.1667,0,buildah_service-node_optimized_dirty_run3.json
+buildah,service-node,optimized,dirty,4,2026-01-04T12:13:46+00:00,github-actions,20.96,85,11.82,6.02,308.92,274 MB,0,1,6,0.1667,0,buildah_service-node_optimized_dirty_run4.json
+buildah,service-node,optimized,dirty,5,2026-01-04T12:17:59+00:00,github-actions,22.29,78,11.68,5.91,308.98,274 MB,0,1,6,0.1667,0,buildah_service-node_optimized_dirty_run5.json
+buildah,service-node,optimized,warm,1,2026-01-04T11:43:19+00:00,github-actions,0.96,36,0.19,0.15,35.24,274 MB,0,5,6,0.8333,0,buildah_service-node_optimized_warm_run1.json
+buildah,service-node,optimized,warm,2,2026-01-04T11:47:05+00:00,github-actions,1.31,28,0.21,0.16,34.26,274 MB,0,5,6,0.8333,0,buildah_service-node_optimized_warm_run2.json
+buildah,service-node,optimized,warm,3,2026-01-04T11:50:24+00:00,github-actions,0.65,58,0.21,0.17,33.49,274 MB,0,5,6,0.8333,0,buildah_service-node_optimized_warm_run3.json
+buildah,service-node,optimized,warm,4,2026-01-04T11:54:26+00:00,github-actions,0.97,33,0.18,0.14,33.12,274 MB,0,5,6,0.8333,0,buildah_service-node_optimized_warm_run4.json
+buildah,service-node,optimized,warm,5,2026-01-04T11:57:51+00:00,github-actions,0.81,36,0.17,0.12,34.0,274 MB,0,5,6,0.8333,0,buildah_service-node_optimized_warm_run5.json
+buildah,service-python,baseline,cold,1,2026-01-04T11:23:48+00:00,github-actions,20.94,109,18.3,4.59,143.73,290 MB,0,0,5,0.0,0,buildah_service-python_baseline_cold_run1.json
+buildah,service-python,baseline,cold,2,2026-01-04T11:28:13+00:00,github-actions,21.4,109,18.49,4.89,143.75,290 MB,0,0,5,0.0,0,buildah_service-python_baseline_cold_run2.json
+buildah,service-python,baseline,cold,3,2026-01-04T11:32:00+00:00,github-actions,19.82,100,17.11,2.79,144.1,290 MB,0,0,5,0.0,0,buildah_service-python_baseline_cold_run3.json
+buildah,service-python,baseline,cold,4,2026-01-04T11:35:31+00:00,github-actions,21.79,111,19.21,5.05,143.41,290 MB,0,0,5,0.0,0,buildah_service-python_baseline_cold_run4.json
+buildah,service-python,baseline,cold,5,2026-01-04T11:39:17+00:00,github-actions,21.37,107,18.36,4.68,143.79,290 MB,0,0,5,0.0,0,buildah_service-python_baseline_cold_run5.json
+buildah,service-python,baseline,dirty,1,2026-01-04T12:01:18+00:00,github-actions,18.89,107,16.29,4.0,143.56,290 MB,0,1,5,0.2,0,buildah_service-python_baseline_dirty_run1.json
+buildah,service-python,baseline,dirty,2,2026-01-04T12:05:17+00:00,github-actions,19.19,105,16.33,3.86,143.98,290 MB,0,1,5,0.2,0,buildah_service-python_baseline_dirty_run2.json
+buildah,service-python,baseline,dirty,3,2026-01-04T12:09:38+00:00,github-actions,18.98,108,16.58,3.97,143.5,290 MB,0,1,5,0.2,0,buildah_service-python_baseline_dirty_run3.json
+buildah,service-python,baseline,dirty,4,2026-01-04T12:13:39+00:00,github-actions,16.01,100,13.89,2.15,143.96,290 MB,0,1,5,0.2,0,buildah_service-python_baseline_dirty_run4.json
+buildah,service-python,baseline,dirty,5,2026-01-04T12:17:54+00:00,github-actions,19.27,104,16.11,3.98,143.74,290 MB,0,1,5,0.2,0,buildah_service-python_baseline_dirty_run5.json
+buildah,service-python,baseline,warm,1,2026-01-04T11:43:16+00:00,github-actions,1.07,24,0.14,0.12,33.72,290 MB,0,4,5,0.8,0,buildah_service-python_baseline_warm_run1.json
+buildah,service-python,baseline,warm,2,2026-01-04T11:46:48+00:00,github-actions,0.41,61,0.14,0.11,33.07,290 MB,0,4,5,0.8,0,buildah_service-python_baseline_warm_run2.json
+buildah,service-python,baseline,warm,3,2026-01-04T11:50:18+00:00,github-actions,0.69,34,0.13,0.11,33.84,290 MB,0,4,5,0.8,0,buildah_service-python_baseline_warm_run3.json
+buildah,service-python,baseline,warm,4,2026-01-04T11:54:21+00:00,github-actions,0.64,38,0.13,0.11,35.34,290 MB,0,4,5,0.8,0,buildah_service-python_baseline_warm_run4.json
+buildah,service-python,baseline,warm,5,2026-01-04T11:57:51+00:00,github-actions,0.75,26,0.11,0.08,33.73,290 MB,0,4,5,0.8,0,buildah_service-python_baseline_warm_run5.json
+buildah,service-python,optimized,cold,1,2026-01-04T11:23:51+00:00,github-actions,21.83,106,18.37,4.88,143.73,290 MB,0,0,6,0.0,0,buildah_service-python_optimized_cold_run1.json
+buildah,service-python,optimized,cold,2,2026-01-04T11:28:12+00:00,github-actions,21.82,106,18.38,4.78,143.8,290 MB,0,0,6,0.0,0,buildah_service-python_optimized_cold_run2.json
+buildah,service-python,optimized,cold,3,2026-01-04T11:32:02+00:00,github-actions,21.6,107,18.33,4.78,143.67,290 MB,0,0,6,0.0,0,buildah_service-python_optimized_cold_run3.json
+buildah,service-python,optimized,cold,4,2026-01-04T11:35:29+00:00,github-actions,22.15,108,19.04,4.97,143.7,290 MB,0,0,6,0.0,0,buildah_service-python_optimized_cold_run4.json
+buildah,service-python,optimized,cold,5,2026-01-04T11:39:17+00:00,github-actions,22.36,105,18.68,4.87,143.66,290 MB,0,0,6,0.0,0,buildah_service-python_optimized_cold_run5.json
+buildah,service-python,optimized,dirty,1,2026-01-04T12:01:12+00:00,github-actions,1.06,31,0.19,0.13,38.75,290 MB,0,3,6,0.5,0,buildah_service-python_optimized_dirty_run1.json
+buildah,service-python,optimized,dirty,2,2026-01-04T12:05:18+00:00,github-actions,1.14,34,0.2,0.18,40.46,290 MB,0,3,6,0.5,0,buildah_service-python_optimized_dirty_run2.json
+buildah,service-python,optimized,dirty,3,2026-01-04T12:09:35+00:00,github-actions,0.75,58,0.24,0.19,38.32,290 MB,0,3,6,0.5,0,buildah_service-python_optimized_dirty_run3.json
+buildah,service-python,optimized,dirty,4,2026-01-04T12:13:38+00:00,github-actions,0.58,70,0.23,0.18,40.84,290 MB,0,3,6,0.5,0,buildah_service-python_optimized_dirty_run4.json
+buildah,service-python,optimized,dirty,5,2026-01-04T12:17:58+00:00,github-actions,0.63,64,0.21,0.19,38.52,290 MB,0,3,6,0.5,0,buildah_service-python_optimized_dirty_run5.json
+buildah,service-python,optimized,warm,1,2026-01-04T11:43:12+00:00,github-actions,1.1,30,0.18,0.15,33.44,290 MB,0,5,6,0.8333,0,buildah_service-python_optimized_warm_run1.json
+buildah,service-python,optimized,warm,2,2026-01-04T11:46:50+00:00,github-actions,0.92,33,0.17,0.13,35.56,290 MB,0,5,6,0.8333,0,buildah_service-python_optimized_warm_run2.json
+buildah,service-python,optimized,warm,3,2026-01-04T11:50:28+00:00,github-actions,0.59,53,0.2,0.11,33.87,290 MB,0,5,6,0.8333,0,buildah_service-python_optimized_warm_run3.json
+buildah,service-python,optimized,warm,4,2026-01-04T11:54:17+00:00,github-actions,0.93,31,0.19,0.09,34.11,290 MB,0,5,6,0.8333,0,buildah_service-python_optimized_warm_run4.json
+buildah,service-python,optimized,warm,5,2026-01-04T11:57:54+00:00,github-actions,0.77,45,0.19,0.15,35.25,290 MB,0,5,6,0.8333,0,buildah_service-python_optimized_warm_run5.json
+buildkit,service-go,baseline,cold,1,2026-01-04T11:23:41+00:00,github-actions,52.37,3,1.36,0.65,63.5,884MB,884072469,0,104,0.0,0,buildkit_service-go_baseline_cold_run1.json
+buildkit,service-go,baseline,cold,2,2026-01-04T11:28:07+00:00,github-actions,52.38,3,1.33,0.69,67.24,884MB,884072469,0,109,0.0,0,buildkit_service-go_baseline_cold_run2.json
+buildkit,service-go,baseline,cold,3,2026-01-04T11:31:55+00:00,github-actions,50.75,4,1.45,0.68,65.76,884MB,884072469,0,102,0.0,0,buildkit_service-go_baseline_cold_run3.json
+buildkit,service-go,baseline,cold,4,2026-01-04T11:35:23+00:00,github-actions,51.73,4,1.47,0.72,66.78,884MB,884072469,0,111,0.0,0,buildkit_service-go_baseline_cold_run4.json
+buildkit,service-go,baseline,cold,5,2026-01-04T11:39:09+00:00,github-actions,51.93,4,1.58,0.7,67.52,884MB,884072469,0,107,0.0,0,buildkit_service-go_baseline_cold_run5.json
+buildkit,service-go,baseline,dirty,1,2026-01-04T12:01:36+00:00,github-actions,22.21,8,1.28,0.61,66.12,884MB,884071931,1,33,0.0303,0,buildkit_service-go_baseline_dirty_run1.json
+buildkit,service-go,baseline,dirty,2,2026-01-04T12:05:43+00:00,github-actions,23.71,9,1.52,0.66,65.25,884MB,884071931,1,37,0.027,0,buildkit_service-go_baseline_dirty_run2.json
+buildkit,service-go,baseline,dirty,3,2026-01-04T12:10:01+00:00,github-actions,23.46,9,1.5,0.66,64.49,884MB,884071931,1,38,0.0263,0,buildkit_service-go_baseline_dirty_run3.json
+buildkit,service-go,baseline,dirty,4,2026-01-04T12:14:07+00:00,github-actions,23.02,8,1.38,0.68,64.92,884MB,884071931,1,37,0.027,0,buildkit_service-go_baseline_dirty_run4.json
+buildkit,service-go,baseline,dirty,5,2026-01-04T12:18:19+00:00,github-actions,23.11,8,1.37,0.67,62.71,884MB,884071931,1,37,0.027,0,buildkit_service-go_baseline_dirty_run5.json
+buildkit,service-go,baseline,warm,1,2026-01-04T11:43:35+00:00,github-actions,3.32,57,1.24,0.67,64.84,884MB,884072469,3,30,0.1,0,buildkit_service-go_baseline_warm_run1.json
+buildkit,service-go,baseline,warm,2,2026-01-04T11:47:09+00:00,github-actions,3.49,58,1.42,0.62,64.56,884MB,884072469,3,30,0.1,0,buildkit_service-go_baseline_warm_run2.json
+buildkit,service-go,baseline,warm,3,2026-01-04T11:50:47+00:00,github-actions,3.83,57,1.51,0.7,65.53,884MB,884072469,3,30,0.1,0,buildkit_service-go_baseline_warm_run3.json
+buildkit,service-go,baseline,warm,4,2026-01-04T11:54:40+00:00,github-actions,3.49,59,1.42,0.65,65.71,884MB,884072469,3,30,0.1,0,buildkit_service-go_baseline_warm_run4.json
+buildkit,service-go,baseline,warm,5,2026-01-04T11:58:08+00:00,github-actions,3.71,66,2.06,0.39,64.91,884MB,884072469,3,30,0.1,0,buildkit_service-go_baseline_warm_run5.json
+buildkit,service-go,optimized,cold,1,2026-01-04T11:23:41+00:00,github-actions,31.62,0,0.16,0.1,59.23,15.2MB,15155094,0,85,0.0,0,buildkit_service-go_optimized_cold_run1.json
+buildkit,service-go,optimized,cold,2,2026-01-04T11:28:06+00:00,github-actions,30.13,0,0.14,0.09,59.84,15.2MB,15155094,0,112,0.0,0,buildkit_service-go_optimized_cold_run2.json
+buildkit,service-go,optimized,cold,3,2026-01-04T11:31:55+00:00,github-actions,30.08,0,0.15,0.1,58.93,15.2MB,15155094,0,110,0.0,0,buildkit_service-go_optimized_cold_run3.json
+buildkit,service-go,optimized,cold,4,2026-01-04T11:35:24+00:00,github-actions,28.77,0,0.15,0.09,59.21,15.2MB,15155094,0,91,0.0,0,buildkit_service-go_optimized_cold_run4.json
+buildkit,service-go,optimized,cold,5,2026-01-04T11:39:07+00:00,github-actions,25.79,0,0.18,0.05,59.07,15.2MB,15155094,0,98,0.0,0,buildkit_service-go_optimized_cold_run5.json
+buildkit,service-go,optimized,dirty,1,2026-01-04T12:01:21+00:00,github-actions,15.99,1,0.13,0.06,56.61,15.2MB,15155094,3,43,0.0698,0,buildkit_service-go_optimized_dirty_run1.json
+buildkit,service-go,optimized,dirty,2,2026-01-04T12:05:18+00:00,github-actions,15.86,1,0.12,0.08,56.22,15.2MB,15155094,3,43,0.0698,0,buildkit_service-go_optimized_dirty_run2.json
+buildkit,service-go,optimized,dirty,3,2026-01-04T12:09:32+00:00,github-actions,14.56,1,0.13,0.03,56.45,15.2MB,15155094,3,43,0.0698,0,buildkit_service-go_optimized_dirty_run3.json
+buildkit,service-go,optimized,dirty,4,2026-01-04T12:13:44+00:00,github-actions,14.74,1,0.11,0.06,56.64,15.2MB,15155094,3,43,0.0698,0,buildkit_service-go_optimized_dirty_run4.json
+buildkit,service-go,optimized,dirty,5,2026-01-04T12:17:54+00:00,github-actions,15.73,1,0.11,0.07,56.3,15.2MB,15155094,3,43,0.0698,0,buildkit_service-go_optimized_dirty_run5.json
+buildkit,service-go,optimized,warm,1,2026-01-04T11:43:15+00:00,github-actions,0.37,44,0.1,0.06,56.73,15.2MB,15155094,6,43,0.1395,0,buildkit_service-go_optimized_warm_run1.json
+buildkit,service-go,optimized,warm,2,2026-01-04T11:46:52+00:00,github-actions,0.38,44,0.1,0.06,56.92,15.2MB,15155094,6,40,0.15,0,buildkit_service-go_optimized_warm_run2.json
+buildkit,service-go,optimized,warm,3,2026-01-04T11:50:25+00:00,github-actions,0.4,41,0.1,0.06,54.9,15.2MB,15155094,6,40,0.15,0,buildkit_service-go_optimized_warm_run3.json
+buildkit,service-go,optimized,warm,4,2026-01-04T11:54:19+00:00,github-actions,0.38,42,0.1,0.06,54.82,15.2MB,15155094,6,40,0.15,0,buildkit_service-go_optimized_warm_run4.json
+buildkit,service-go,optimized,warm,5,2026-01-04T11:57:52+00:00,github-actions,0.35,46,0.11,0.05,56.77,15.2MB,15155094,6,43,0.1395,0,buildkit_service-go_optimized_warm_run5.json
+buildkit,service-node,baseline,cold,1,2026-01-04T11:23:37+00:00,github-actions,31.44,2,0.46,0.21,61.41,263MB,263178997,0,81,0.0,0,buildkit_service-node_baseline_cold_run1.json
+buildkit,service-node,baseline,cold,2,2026-01-04T11:28:12+00:00,github-actions,35.44,2,0.53,0.23,61.35,263MB,263178989,0,81,0.0,0,buildkit_service-node_baseline_cold_run2.json
+buildkit,service-node,baseline,cold,3,2026-01-04T11:31:55+00:00,github-actions,29.39,2,0.47,0.2,61.65,263MB,263178998,0,79,0.0,0,buildkit_service-node_baseline_cold_run3.json
+buildkit,service-node,baseline,cold,4,2026-01-04T11:35:25+00:00,github-actions,29.63,2,0.44,0.21,64.04,263MB,263179005,0,81,0.0,0,buildkit_service-node_baseline_cold_run4.json
+buildkit,service-node,baseline,cold,5,2026-01-04T11:39:07+00:00,github-actions,30.15,2,0.42,0.22,61.68,263MB,263179008,0,82,0.0,0,buildkit_service-node_baseline_cold_run5.json
+buildkit,service-node,baseline,dirty,1,2026-01-04T12:01:22+00:00,github-actions,26.47,2,0.41,0.23,62.96,263MB,263179076,1,51,0.0196,0,buildkit_service-node_baseline_dirty_run1.json
+buildkit,service-node,baseline,dirty,2,2026-01-04T12:05:19+00:00,github-actions,25.9,2,0.43,0.22,60.41,263MB,263179087,1,51,0.0196,0,buildkit_service-node_baseline_dirty_run2.json
+buildkit,service-node,baseline,dirty,3,2026-01-04T12:09:35+00:00,github-actions,24.4,2,0.36,0.23,62.51,263MB,263179084,1,49,0.0204,0,buildkit_service-node_baseline_dirty_run3.json
+buildkit,service-node,baseline,dirty,4,2026-01-04T12:13:42+00:00,github-actions,25.35,2,0.43,0.22,61.19,263MB,263179087,1,49,0.0204,0,buildkit_service-node_baseline_dirty_run4.json
+buildkit,service-node,baseline,dirty,5,2026-01-04T12:18:09+00:00,github-actions,24.76,2,0.43,0.19,60.75,263MB,263179086,1,49,0.0204,0,buildkit_service-node_baseline_dirty_run5.json
+buildkit,service-node,baseline,warm,1,2026-01-04T11:43:20+00:00,github-actions,1.22,52,0.43,0.2,62.69,263MB,263179004,3,30,0.1,0,buildkit_service-node_baseline_warm_run1.json
+buildkit,service-node,baseline,warm,2,2026-01-04T11:46:59+00:00,github-actions,1.2,51,0.4,0.21,62.82,263MB,263178987,3,30,0.1,0,buildkit_service-node_baseline_warm_run2.json
+buildkit,service-node,baseline,warm,3,2026-01-04T11:50:25+00:00,github-actions,1.1,52,0.38,0.19,60.62,263MB,263179004,3,30,0.1,0,buildkit_service-node_baseline_warm_run3.json
+buildkit,service-node,baseline,warm,4,2026-01-04T11:54:33+00:00,github-actions,1.19,53,0.42,0.21,60.77,263MB,263178989,3,30,0.1,0,buildkit_service-node_baseline_warm_run4.json
+buildkit,service-node,baseline,warm,5,2026-01-04T11:57:57+00:00,github-actions,1.08,54,0.39,0.18,60.43,263MB,263178989,3,30,0.1,0,buildkit_service-node_baseline_warm_run5.json
+buildkit,service-node,optimized,cold,1,2026-01-04T11:23:40+00:00,github-actions,30.72,2,0.44,0.24,61.45,263MB,263179004,0,83,0.0,0,buildkit_service-node_optimized_cold_run1.json
+buildkit,service-node,optimized,cold,2,2026-01-04T11:28:07+00:00,github-actions,33.76,2,0.44,0.24,61.35,263MB,263178985,0,84,0.0,0,buildkit_service-node_optimized_cold_run2.json
+buildkit,service-node,optimized,cold,3,2026-01-04T11:31:52+00:00,github-actions,32.65,2,0.42,0.24,61.15,263MB,263179002,0,82,0.0,0,buildkit_service-node_optimized_cold_run3.json
+buildkit,service-node,optimized,cold,4,2026-01-04T11:35:26+00:00,github-actions,35.45,1,0.42,0.21,63.7,263MB,263178983,0,87,0.0,0,buildkit_service-node_optimized_cold_run4.json
+buildkit,service-node,optimized,cold,5,2026-01-04T11:39:11+00:00,github-actions,29.9,2,0.41,0.22,61.57,263MB,263178997,0,84,0.0,0,buildkit_service-node_optimized_cold_run5.json
+buildkit,service-node,optimized,dirty,1,2026-01-04T12:01:23+00:00,github-actions,28.87,2,0.63,0.14,62.87,263MB,263179065,1,52,0.0192,0,buildkit_service-node_optimized_dirty_run1.json
+buildkit,service-node,optimized,dirty,2,2026-01-04T12:05:26+00:00,github-actions,30.55,2,0.43,0.21,60.83,263MB,263179071,1,52,0.0192,0,buildkit_service-node_optimized_dirty_run2.json
+buildkit,service-node,optimized,dirty,3,2026-01-04T12:09:35+00:00,github-actions,25.82,2,0.45,0.23,60.11,263MB,263179086,1,52,0.0192,0,buildkit_service-node_optimized_dirty_run3.json
+buildkit,service-node,optimized,dirty,4,2026-01-04T12:13:43+00:00,github-actions,26.32,2,0.46,0.23,60.99,263MB,263179087,1,52,0.0192,0,buildkit_service-node_optimized_dirty_run4.json
+buildkit,service-node,optimized,dirty,5,2026-01-04T12:17:55+00:00,github-actions,25.52,2,0.44,0.21,60.53,263MB,263179083,1,52,0.0192,0,buildkit_service-node_optimized_dirty_run5.json
+buildkit,service-node,optimized,warm,1,2026-01-04T11:43:13+00:00,github-actions,1.14,50,0.37,0.19,62.87,263MB,263179003,4,32,0.125,0,buildkit_service-node_optimized_warm_run1.json
+buildkit,service-node,optimized,warm,2,2026-01-04T11:46:48+00:00,github-actions,1.17,55,0.52,0.13,60.35,263MB,263179002,4,32,0.125,0,buildkit_service-node_optimized_warm_run2.json
+buildkit,service-node,optimized,warm,3,2026-01-04T11:50:29+00:00,github-actions,1.2,60,0.6,0.12,60.73,263MB,263178977,4,32,0.125,0,buildkit_service-node_optimized_warm_run3.json
+buildkit,service-node,optimized,warm,4,2026-01-04T11:54:20+00:00,github-actions,1.01,56,0.39,0.18,60.71,263MB,263178995,4,32,0.125,0,buildkit_service-node_optimized_warm_run4.json
+buildkit,service-node,optimized,warm,5,2026-01-04T11:57:53+00:00,github-actions,1.12,50,0.37,0.19,60.87,263MB,263179002,4,32,0.125,0,buildkit_service-node_optimized_warm_run5.json
+buildkit,service-python,baseline,cold,1,2026-01-04T11:23:41+00:00,github-actions,31.39,2,0.49,0.27,62.04,280MB,279505962,0,154,0.0,0,buildkit_service-python_baseline_cold_run1.json
+buildkit,service-python,baseline,cold,2,2026-01-04T11:28:06+00:00,github-actions,32.13,2,0.53,0.27,61.18,280MB,279505962,0,154,0.0,0,buildkit_service-python_baseline_cold_run2.json
+buildkit,service-python,baseline,cold,3,2026-01-04T11:31:54+00:00,github-actions,32.38,2,0.58,0.25,62.95,280MB,279505962,0,158,0.0,0,buildkit_service-python_baseline_cold_run3.json
+buildkit,service-python,baseline,cold,4,2026-01-04T11:35:21+00:00,github-actions,31.37,2,0.53,0.25,61.59,280MB,279505962,0,154,0.0,0,buildkit_service-python_baseline_cold_run4.json
+buildkit,service-python,baseline,cold,5,2026-01-04T11:39:11+00:00,github-actions,31.29,2,0.51,0.24,62.04,280MB,279505962,0,158,0.0,0,buildkit_service-python_baseline_cold_run5.json
+buildkit,service-python,baseline,dirty,1,2026-01-04T12:01:19+00:00,github-actions,27.31,2,0.52,0.26,61.21,280MB,279506001,1,128,0.0078,0,buildkit_service-python_baseline_dirty_run1.json
+buildkit,service-python,baseline,dirty,2,2026-01-04T12:05:20+00:00,github-actions,26.76,2,0.51,0.27,61.09,280MB,279506001,1,128,0.0078,0,buildkit_service-python_baseline_dirty_run2.json
+buildkit,service-python,baseline,dirty,3,2026-01-04T12:09:35+00:00,github-actions,26.68,2,0.51,0.24,61.42,280MB,279506001,1,130,0.0077,0,buildkit_service-python_baseline_dirty_run3.json
+buildkit,service-python,baseline,dirty,4,2026-01-04T12:13:45+00:00,github-actions,26.61,2,0.52,0.27,61.08,280MB,279506001,1,128,0.0078,0,buildkit_service-python_baseline_dirty_run4.json
+buildkit,service-python,baseline,dirty,5,2026-01-04T12:18:06+00:00,github-actions,28.12,2,0.54,0.26,60.38,280MB,279506001,1,128,0.0078,0,buildkit_service-python_baseline_dirty_run5.json
+buildkit,service-python,baseline,warm,1,2026-01-04T11:43:19+00:00,github-actions,1.28,52,0.43,0.24,60.54,280MB,279505962,3,30,0.1,0,buildkit_service-python_baseline_warm_run1.json
+buildkit,service-python,baseline,warm,2,2026-01-04T11:46:55+00:00,github-actions,1.3,52,0.46,0.22,63.07,280MB,279505962,3,30,0.1,0,buildkit_service-python_baseline_warm_run2.json
+buildkit,service-python,baseline,warm,3,2026-01-04T11:50:26+00:00,github-actions,1.3,51,0.45,0.21,64.8,280MB,279505962,3,30,0.1,0,buildkit_service-python_baseline_warm_run3.json
+buildkit,service-python,baseline,warm,4,2026-01-04T11:54:28+00:00,github-actions,1.21,56,0.45,0.22,63.38,280MB,279505962,3,30,0.1,0,buildkit_service-python_baseline_warm_run4.json
+buildkit,service-python,baseline,warm,5,2026-01-04T11:57:55+00:00,github-actions,1.23,54,0.48,0.19,60.99,280MB,279505962,3,30,0.1,0,buildkit_service-python_baseline_warm_run5.json
+buildkit,service-python,optimized,cold,1,2026-01-04T11:23:40+00:00,github-actions,30.71,2,0.5,0.29,63.29,280MB,279505962,0,159,0.0,0,buildkit_service-python_optimized_cold_run1.json
+buildkit,service-python,optimized,cold,2,2026-01-04T11:28:04+00:00,github-actions,31.25,2,0.49,0.26,61.45,280MB,279505962,0,162,0.0,0,buildkit_service-python_optimized_cold_run2.json
+buildkit,service-python,optimized,cold,3,2026-01-04T11:31:58+00:00,github-actions,31.59,2,0.54,0.27,61.59,280MB,279505962,0,159,0.0,0,buildkit_service-python_optimized_cold_run3.json
+buildkit,service-python,optimized,cold,4,2026-01-04T11:35:26+00:00,github-actions,31.15,2,0.48,0.26,61.52,280MB,279505962,0,162,0.0,0,buildkit_service-python_optimized_cold_run4.json
+buildkit,service-python,optimized,cold,5,2026-01-04T11:39:11+00:00,github-actions,33.37,2,0.58,0.24,61.78,280MB,279505962,0,164,0.0,0,buildkit_service-python_optimized_cold_run5.json
+buildkit,service-python,optimized,dirty,1,2026-01-04T12:01:22+00:00,github-actions,1.55,45,0.46,0.23,62.6,280MB,279506001,3,33,0.0909,0,buildkit_service-python_optimized_dirty_run1.json
+buildkit,service-python,optimized,dirty,2,2026-01-04T12:05:21+00:00,github-actions,1.44,47,0.47,0.22,64.39,280MB,279506001,3,33,0.0909,0,buildkit_service-python_optimized_dirty_run2.json
+buildkit,service-python,optimized,dirty,3,2026-01-04T12:09:39+00:00,github-actions,1.52,46,0.49,0.21,64.81,280MB,279506001,3,33,0.0909,0,buildkit_service-python_optimized_dirty_run3.json
+buildkit,service-python,optimized,dirty,4,2026-01-04T12:13:48+00:00,github-actions,1.49,43,0.42,0.22,63.07,280MB,279506001,3,33,0.0909,0,buildkit_service-python_optimized_dirty_run4.json
+buildkit,service-python,optimized,dirty,5,2026-01-04T12:17:57+00:00,github-actions,1.55,45,0.44,0.25,60.38,280MB,279506001,3,33,0.0909,0,buildkit_service-python_optimized_dirty_run5.json
+buildkit,service-python,optimized,warm,1,2026-01-04T11:43:15+00:00,github-actions,1.45,56,0.66,0.15,60.83,280MB,279505962,4,32,0.125,0,buildkit_service-python_optimized_warm_run1.json
+buildkit,service-python,optimized,warm,2,2026-01-04T11:46:53+00:00,github-actions,1.26,53,0.44,0.23,61.02,280MB,279505962,4,32,0.125,0,buildkit_service-python_optimized_warm_run2.json
+buildkit,service-python,optimized,warm,3,2026-01-04T11:50:25+00:00,github-actions,1.32,51,0.46,0.22,62.85,280MB,279505962,4,32,0.125,0,buildkit_service-python_optimized_warm_run3.json
+buildkit,service-python,optimized,warm,4,2026-01-04T11:54:27+00:00,github-actions,1.3,53,0.46,0.22,62.88,280MB,279505962,4,32,0.125,0,buildkit_service-python_optimized_warm_run4.json
+buildkit,service-python,optimized,warm,5,2026-01-04T11:57:56+00:00,github-actions,1.29,53,0.46,0.23,61.43,280MB,279505962,4,32,0.125,0,buildkit_service-python_optimized_warm_run5.json
+kaniko,service-go,baseline,cold,1,2026-01-04T11:23:32+00:00,github-actions,45.044432369,0,0.0,0.0,0.0,305.1MB,319914496,0,3,0.0,0,kaniko_service-go_baseline_cold_run1.json
+kaniko,service-go,baseline,cold,2,2026-01-04T11:27:57+00:00,github-actions,41.704646669,0,0.0,0.0,0.0,305.1MB,319913984,0,3,0.0,0,kaniko_service-go_baseline_cold_run2.json
+kaniko,service-go,baseline,cold,3,2026-01-04T11:31:48+00:00,github-actions,46.542966583,0,0.0,0.0,0.0,305.1MB,319907840,0,3,0.0,0,kaniko_service-go_baseline_cold_run3.json
+kaniko,service-go,baseline,cold,4,2026-01-04T11:35:17+00:00,github-actions,50.067653335,0,0.0,0.0,0.0,305.1MB,319915008,0,3,0.0,0,kaniko_service-go_baseline_cold_run4.json
+kaniko,service-go,baseline,cold,5,2026-01-04T11:38:59+00:00,github-actions,47.747301928,0,0.0,0.0,0.0,305.1MB,319913984,0,3,0.0,0,kaniko_service-go_baseline_cold_run5.json
+kaniko,service-go,baseline,dirty,1,2026-01-04T12:00:38+00:00,github-actions,46.502010736,0,0.0,0.0,0.0,305.1MB,319871488,0,3,0.0,0,kaniko_service-go_baseline_dirty_run1.json
+kaniko,service-go,baseline,dirty,2,2026-01-04T12:04:38+00:00,github-actions,47.367245964,0,0.0,0.0,0.0,305.1MB,319898112,0,3,0.0,0,kaniko_service-go_baseline_dirty_run2.json
+kaniko,service-go,baseline,dirty,3,2026-01-04T12:08:56+00:00,github-actions,42.973409162,0,0.0,0.0,0.0,305.1MB,319894016,0,3,0.0,0,kaniko_service-go_baseline_dirty_run3.json
+kaniko,service-go,baseline,dirty,4,2026-01-04T12:13:06+00:00,github-actions,49.297729553,0,0.0,0.0,0.0,305.1MB,319897600,0,3,0.0,0,kaniko_service-go_baseline_dirty_run4.json
+kaniko,service-go,baseline,dirty,5,2026-01-04T12:17:16+00:00,github-actions,47.175530171,0,0.0,0.0,0.0,305.1MB,319895040,0,3,0.0,0,kaniko_service-go_baseline_dirty_run5.json
+kaniko,service-go,baseline,warm,1,2026-01-04T11:42:37+00:00,github-actions,47.169378961,0,0.0,0.0,0.0,305.1MB,319916032,0,3,0.0,0,kaniko_service-go_baseline_warm_run1.json
+kaniko,service-go,baseline,warm,2,2026-01-04T11:46:15+00:00,github-actions,48.65385681,0,0.0,0.0,0.0,305.1MB,319915008,0,3,0.0,0,kaniko_service-go_baseline_warm_run2.json
+kaniko,service-go,baseline,warm,3,2026-01-04T11:49:45+00:00,github-actions,48.845431103,0,0.0,0.0,0.0,305.1MB,319915008,0,3,0.0,0,kaniko_service-go_baseline_warm_run3.json
+kaniko,service-go,baseline,warm,4,2026-01-04T11:53:44+00:00,github-actions,48.536949518,0,0.0,0.0,0.0,305.1MB,319920128,0,3,0.0,0,kaniko_service-go_baseline_warm_run4.json
+kaniko,service-go,baseline,warm,5,2026-01-04T11:57:16+00:00,github-actions,47.018493557,0,0.0,0.0,0.0,305.1MB,319915008,0,3,0.0,0,kaniko_service-go_baseline_warm_run5.json
+kaniko,service-go,optimized,cold,1,2026-01-04T11:23:32+00:00,github-actions,38.286470585,0,0.0,0.0,0.0,7.6MB,7985152,0,6,0.0,0,kaniko_service-go_optimized_cold_run1.json
+kaniko,service-go,optimized,cold,2,2026-01-04T11:27:57+00:00,github-actions,41.007605331,0,0.0,0.0,0.0,7.6MB,7985152,0,6,0.0,0,kaniko_service-go_optimized_cold_run2.json
+kaniko,service-go,optimized,cold,3,2026-01-04T11:31:48+00:00,github-actions,40.378801976,0,0.0,0.0,0.0,7.6MB,7985152,0,6,0.0,0,kaniko_service-go_optimized_cold_run3.json
+kaniko,service-go,optimized,cold,4,2026-01-04T11:35:14+00:00,github-actions,37.125413439,0,0.0,0.0,0.0,7.6MB,7985152,0,6,0.0,0,kaniko_service-go_optimized_cold_run4.json
+kaniko,service-go,optimized,cold,5,2026-01-04T11:38:59+00:00,github-actions,41.128372567,0,0.0,0.0,0.0,7.6MB,7985152,0,6,0.0,0,kaniko_service-go_optimized_cold_run5.json
+kaniko,service-go,optimized,dirty,1,2026-01-04T12:00:39+00:00,github-actions,40.311433711,0,0.0,0.0,0.0,7.6MB,7985152,0,6,0.0,0,kaniko_service-go_optimized_dirty_run1.json
+kaniko,service-go,optimized,dirty,2,2026-01-04T12:04:39+00:00,github-actions,43.07740076,0,0.0,0.0,0.0,7.6MB,7985152,0,6,0.0,0,kaniko_service-go_optimized_dirty_run2.json
+kaniko,service-go,optimized,dirty,3,2026-01-04T12:08:58+00:00,github-actions,36.557498247,0,0.0,0.0,0.0,7.6MB,7985152,0,6,0.0,0,kaniko_service-go_optimized_dirty_run3.json
+kaniko,service-go,optimized,dirty,4,2026-01-04T12:13:06+00:00,github-actions,39.069327579,0,0.0,0.0,0.0,7.6MB,7985152,0,6,0.0,0,kaniko_service-go_optimized_dirty_run4.json
+kaniko,service-go,optimized,dirty,5,2026-01-04T12:17:17+00:00,github-actions,41.73664085,0,0.0,0.0,0.0,7.6MB,7985152,0,6,0.0,0,kaniko_service-go_optimized_dirty_run5.json
+kaniko,service-go,optimized,warm,1,2026-01-04T11:42:37+00:00,github-actions,42.017634042,0,0.0,0.0,0.0,7.6MB,7985152,0,6,0.0,0,kaniko_service-go_optimized_warm_run1.json
+kaniko,service-go,optimized,warm,2,2026-01-04T11:46:13+00:00,github-actions,43.126605481,0,0.0,0.0,0.0,7.6MB,7985152,0,6,0.0,0,kaniko_service-go_optimized_warm_run2.json
+kaniko,service-go,optimized,warm,3,2026-01-04T11:49:44+00:00,github-actions,40.515589451,0,0.0,0.0,0.0,7.6MB,7985152,0,6,0.0,0,kaniko_service-go_optimized_warm_run3.json
+kaniko,service-go,optimized,warm,4,2026-01-04T11:53:44+00:00,github-actions,39.165581316,0,0.0,0.0,0.0,7.6MB,7985152,0,6,0.0,0,kaniko_service-go_optimized_warm_run4.json
+kaniko,service-go,optimized,warm,5,2026-01-04T11:57:14+00:00,github-actions,45.403835093,0,0.0,0.0,0.0,7.6MB,7985152,0,6,0.0,0,kaniko_service-go_optimized_warm_run5.json
+kaniko,service-node,baseline,cold,1,2026-01-04T11:23:32+00:00,github-actions,32.021971899,0,0.0,0.0,0.0,80.4MB,84328448,0,3,0.0,0,kaniko_service-node_baseline_cold_run1.json
+kaniko,service-node,baseline,cold,2,2026-01-04T11:27:59+00:00,github-actions,35.058104183,0,0.0,0.0,0.0,80.4MB,84305920,0,3,0.0,0,kaniko_service-node_baseline_cold_run2.json
+kaniko,service-node,baseline,cold,3,2026-01-04T11:31:47+00:00,github-actions,33.370621255,0,0.0,0.0,0.0,80.4MB,84323840,0,3,0.0,0,kaniko_service-node_baseline_cold_run3.json
+kaniko,service-node,baseline,cold,4,2026-01-04T11:35:15+00:00,github-actions,29.212953408,0,0.0,0.0,0.0,80.4MB,84315136,0,3,0.0,0,kaniko_service-node_baseline_cold_run4.json
+kaniko,service-node,baseline,cold,5,2026-01-04T11:39:01+00:00,github-actions,33.050920206,0,0.0,0.0,0.0,80.4MB,84296192,0,3,0.0,0,kaniko_service-node_baseline_cold_run5.json
+kaniko,service-node,baseline,dirty,1,2026-01-04T12:00:41+00:00,github-actions,31.570620631,0,0.0,0.0,0.0,80.4MB,84315136,0,3,0.0,0,kaniko_service-node_baseline_dirty_run1.json
+kaniko,service-node,baseline,dirty,2,2026-01-04T12:04:40+00:00,github-actions,37.297355102,0,0.0,0.0,0.0,80.4MB,84319744,0,3,0.0,0,kaniko_service-node_baseline_dirty_run2.json
+kaniko,service-node,baseline,dirty,3,2026-01-04T12:08:56+00:00,github-actions,30.163116922,0,0.0,0.0,0.0,80.4MB,84317696,0,3,0.0,0,kaniko_service-node_baseline_dirty_run3.json
+kaniko,service-node,baseline,dirty,4,2026-01-04T12:13:06+00:00,github-actions,34.854324759,0,0.0,0.0,0.0,80.4MB,84307968,0,3,0.0,0,kaniko_service-node_baseline_dirty_run4.json
+kaniko,service-node,baseline,dirty,5,2026-01-04T12:17:16+00:00,github-actions,31.951894341,0,0.0,0.0,0.0,80.4MB,84318720,0,3,0.0,0,kaniko_service-node_baseline_dirty_run5.json
+kaniko,service-node,baseline,warm,1,2026-01-04T11:42:37+00:00,github-actions,35.81733742,0,0.0,0.0,0.0,80.4MB,84313088,0,3,0.0,0,kaniko_service-node_baseline_warm_run1.json
+kaniko,service-node,baseline,warm,2,2026-01-04T11:46:13+00:00,github-actions,38.953476705,0,0.0,0.0,0.0,80.4MB,84315136,0,3,0.0,0,kaniko_service-node_baseline_warm_run2.json
+kaniko,service-node,baseline,warm,3,2026-01-04T11:49:45+00:00,github-actions,31.652266425,0,0.0,0.0,0.0,80.4MB,84314112,0,3,0.0,0,kaniko_service-node_baseline_warm_run3.json
+kaniko,service-node,baseline,warm,4,2026-01-04T11:53:44+00:00,github-actions,31.816749035,0,0.0,0.0,0.0,80.4MB,84321792,0,3,0.0,0,kaniko_service-node_baseline_warm_run4.json
+kaniko,service-node,baseline,warm,5,2026-01-04T11:57:16+00:00,github-actions,32.001798388,0,0.0,0.0,0.0,80.4MB,84322304,0,3,0.0,0,kaniko_service-node_baseline_warm_run5.json
+kaniko,service-node,optimized,cold,1,2026-01-04T11:23:32+00:00,github-actions,34.454235265,0,0.0,0.0,0.0,80.4MB,84307456,0,4,0.0,0,kaniko_service-node_optimized_cold_run1.json
+kaniko,service-node,optimized,cold,2,2026-01-04T11:27:56+00:00,github-actions,30.680863032,0,0.0,0.0,0.0,80.4MB,84316160,0,4,0.0,0,kaniko_service-node_optimized_cold_run2.json
+kaniko,service-node,optimized,cold,3,2026-01-04T11:31:47+00:00,github-actions,31.167141547,0,0.0,0.0,0.0,80.4MB,84312576,0,4,0.0,0,kaniko_service-node_optimized_cold_run3.json
+kaniko,service-node,optimized,cold,4,2026-01-04T11:35:17+00:00,github-actions,30.852564082,0,0.0,0.0,0.0,80.4MB,84318720,0,4,0.0,0,kaniko_service-node_optimized_cold_run4.json
+kaniko,service-node,optimized,cold,5,2026-01-04T11:38:59+00:00,github-actions,33.98025186,0,0.0,0.0,0.0,80.4MB,84304896,0,4,0.0,0,kaniko_service-node_optimized_cold_run5.json
+kaniko,service-node,optimized,dirty,1,2026-01-04T12:00:39+00:00,github-actions,33.961908382,0,0.0,0.0,0.0,80.4MB,84316160,0,4,0.0,0,kaniko_service-node_optimized_dirty_run1.json
+kaniko,service-node,optimized,dirty,2,2026-01-04T12:04:40+00:00,github-actions,33.476891456,0,0.0,0.0,0.0,80.4MB,84329472,0,4,0.0,0,kaniko_service-node_optimized_dirty_run2.json
+kaniko,service-node,optimized,dirty,3,2026-01-04T12:08:56+00:00,github-actions,31.138816483,0,0.0,0.0,0.0,80.4MB,84325888,0,4,0.0,0,kaniko_service-node_optimized_dirty_run3.json
+kaniko,service-node,optimized,dirty,4,2026-01-04T12:13:03+00:00,github-actions,31.529755706,0,0.0,0.0,0.0,80.4MB,84310016,0,4,0.0,0,kaniko_service-node_optimized_dirty_run4.json
+kaniko,service-node,optimized,dirty,5,2026-01-04T12:17:16+00:00,github-actions,35.05786375,0,0.0,0.0,0.0,80.4MB,84296704,0,4,0.0,0,kaniko_service-node_optimized_dirty_run5.json
+kaniko,service-node,optimized,warm,1,2026-01-04T11:42:37+00:00,github-actions,37.868005371,0,0.0,0.0,0.0,80.4MB,84315136,0,4,0.0,0,kaniko_service-node_optimized_warm_run1.json
+kaniko,service-node,optimized,warm,2,2026-01-04T11:46:12+00:00,github-actions,31.062320405,0,0.0,0.0,0.0,80.4MB,84312576,0,4,0.0,0,kaniko_service-node_optimized_warm_run2.json
+kaniko,service-node,optimized,warm,3,2026-01-04T11:49:46+00:00,github-actions,31.519285451,0,0.0,0.0,0.0,80.4MB,84313600,0,4,0.0,0,kaniko_service-node_optimized_warm_run3.json
+kaniko,service-node,optimized,warm,4,2026-01-04T11:53:46+00:00,github-actions,31.190754158,0,0.0,0.0,0.0,80.4MB,84319232,0,4,0.0,0,kaniko_service-node_optimized_warm_run4.json
+kaniko,service-node,optimized,warm,5,2026-01-04T11:57:13+00:00,github-actions,28.812650055,0,0.0,0.0,0.0,80.4MB,84313088,0,4,0.0,0,kaniko_service-node_optimized_warm_run5.json
+kaniko,service-python,baseline,cold,1,2026-01-04T11:23:32+00:00,github-actions,29.312184608,0,0.0,0.0,0.0,97.5MB,102194176,0,3,0.0,0,kaniko_service-python_baseline_cold_run1.json
+kaniko,service-python,baseline,cold,2,2026-01-04T11:27:58+00:00,github-actions,31.74212803,0,0.0,0.0,0.0,97.5MB,102212608,0,3,0.0,0,kaniko_service-python_baseline_cold_run2.json
+kaniko,service-python,baseline,cold,3,2026-01-04T11:31:47+00:00,github-actions,28.758808235,0,0.0,0.0,0.0,97.5MB,102205440,0,3,0.0,0,kaniko_service-python_baseline_cold_run3.json
+kaniko,service-python,baseline,cold,4,2026-01-04T11:35:15+00:00,github-actions,31.115131358,0,0.0,0.0,0.0,97.5MB,102206464,0,3,0.0,0,kaniko_service-python_baseline_cold_run4.json
+kaniko,service-python,baseline,cold,5,2026-01-04T11:39:02+00:00,github-actions,28.959744473,0,0.0,0.0,0.0,97.5MB,102207488,0,3,0.0,0,kaniko_service-python_baseline_cold_run5.json
+kaniko,service-python,baseline,dirty,1,2026-01-04T12:00:39+00:00,github-actions,31.528057783,0,0.0,0.0,0.0,97.5MB,102200320,0,3,0.0,0,kaniko_service-python_baseline_dirty_run1.json
+kaniko,service-python,baseline,dirty,2,2026-01-04T12:04:40+00:00,github-actions,28.782585233,0,0.0,0.0,0.0,97.5MB,102212608,0,3,0.0,0,kaniko_service-python_baseline_dirty_run2.json
+kaniko,service-python,baseline,dirty,3,2026-01-04T12:08:56+00:00,github-actions,32.28574871,0,0.0,0.0,0.0,97.5MB,102206976,0,3,0.0,0,kaniko_service-python_baseline_dirty_run3.json
+kaniko,service-python,baseline,dirty,4,2026-01-04T12:13:05+00:00,github-actions,29.945905195,0,0.0,0.0,0.0,97.5MB,102212096,0,3,0.0,0,kaniko_service-python_baseline_dirty_run4.json
+kaniko,service-python,baseline,dirty,5,2026-01-04T12:17:18+00:00,github-actions,31.29061647,0,0.0,0.0,0.0,97.5MB,102209024,0,3,0.0,0,kaniko_service-python_baseline_dirty_run5.json
+kaniko,service-python,baseline,warm,1,2026-01-04T11:42:37+00:00,github-actions,32.108624301,0,0.0,0.0,0.0,97.5MB,102210560,0,3,0.0,0,kaniko_service-python_baseline_warm_run1.json
+kaniko,service-python,baseline,warm,2,2026-01-04T11:46:13+00:00,github-actions,30.438063932,0,0.0,0.0,0.0,97.5MB,102204416,0,3,0.0,0,kaniko_service-python_baseline_warm_run2.json
+kaniko,service-python,baseline,warm,3,2026-01-04T11:49:45+00:00,github-actions,34.075212197,0,0.0,0.0,0.0,97.5MB,102204928,0,3,0.0,0,kaniko_service-python_baseline_warm_run3.json
+kaniko,service-python,baseline,warm,4,2026-01-04T11:53:46+00:00,github-actions,26.805475421,0,0.0,0.0,0.0,97.5MB,102192128,0,3,0.0,0,kaniko_service-python_baseline_warm_run4.json
+kaniko,service-python,baseline,warm,5,2026-01-04T11:57:16+00:00,github-actions,32.519379439,0,0.0,0.0,0.0,97.5MB,102206464,0,3,0.0,0,kaniko_service-python_baseline_warm_run5.json
+kaniko,service-python,optimized,cold,1,2026-01-04T11:23:32+00:00,github-actions,29.846090265,0,0.0,0.0,0.0,97.5MB,102208512,0,4,0.0,0,kaniko_service-python_optimized_cold_run1.json
+kaniko,service-python,optimized,cold,2,2026-01-04T11:27:58+00:00,github-actions,31.730927313,0,0.0,0.0,0.0,97.5MB,102206464,0,4,0.0,0,kaniko_service-python_optimized_cold_run2.json
+kaniko,service-python,optimized,cold,3,2026-01-04T11:31:47+00:00,github-actions,28.13265414,0,0.0,0.0,0.0,97.5MB,102209536,0,4,0.0,0,kaniko_service-python_optimized_cold_run3.json
+kaniko,service-python,optimized,cold,4,2026-01-04T11:35:15+00:00,github-actions,32.46085686,0,0.0,0.0,0.0,97.5MB,102209024,0,4,0.0,0,kaniko_service-python_optimized_cold_run4.json
+kaniko,service-python,optimized,cold,5,2026-01-04T11:38:59+00:00,github-actions,34.13048647,0,0.0,0.0,0.0,97.5MB,102205952,0,4,0.0,0,kaniko_service-python_optimized_cold_run5.json
+kaniko,service-python,optimized,dirty,1,2026-01-04T12:00:40+00:00,github-actions,29.212011509,0,0.0,0.0,0.0,97.5MB,102210560,0,4,0.0,0,kaniko_service-python_optimized_dirty_run1.json
+kaniko,service-python,optimized,dirty,2,2026-01-04T12:04:51+00:00,github-actions,29.817036606,0,0.0,0.0,0.0,97.5MB,102211584,0,4,0.0,0,kaniko_service-python_optimized_dirty_run2.json
+kaniko,service-python,optimized,dirty,3,2026-01-04T12:08:58+00:00,github-actions,30.442679524,0,0.0,0.0,0.0,97.5MB,102209536,0,4,0.0,0,kaniko_service-python_optimized_dirty_run3.json
+kaniko,service-python,optimized,dirty,4,2026-01-04T12:13:05+00:00,github-actions,29.815188561,0,0.0,0.0,0.0,97.5MB,102195712,0,4,0.0,0,kaniko_service-python_optimized_dirty_run4.json
+kaniko,service-python,optimized,dirty,5,2026-01-04T12:17:16+00:00,github-actions,30.761339503,0,0.0,0.0,0.0,97.5MB,102208000,0,4,0.0,0,kaniko_service-python_optimized_dirty_run5.json
+kaniko,service-python,optimized,warm,1,2026-01-04T11:42:37+00:00,github-actions,34.061022642,0,0.0,0.0,0.0,97.5MB,102209024,0,4,0.0,0,kaniko_service-python_optimized_warm_run1.json
+kaniko,service-python,optimized,warm,2,2026-01-04T11:46:12+00:00,github-actions,29.047131766,0,0.0,0.0,0.0,97.5MB,102208512,0,4,0.0,0,kaniko_service-python_optimized_warm_run2.json
+kaniko,service-python,optimized,warm,3,2026-01-04T11:49:45+00:00,github-actions,29.184310174,0,0.0,0.0,0.0,97.5MB,102203392,0,4,0.0,0,kaniko_service-python_optimized_warm_run3.json
+kaniko,service-python,optimized,warm,4,2026-01-04T11:53:45+00:00,github-actions,30.048637794,0,0.0,0.0,0.0,97.5MB,102204928,0,4,0.0,0,kaniko_service-python_optimized_warm_run4.json
+kaniko,service-python,optimized,warm,5,2026-01-04T11:57:14+00:00,github-actions,30.339730797,0,0.0,0.0,0.0,97.5MB,102211584,0,4,0.0,0,kaniko_service-python_optimized_warm_run5.json
+kaniko,service-go,baseline,cold,1,2026-01-10T14:34:39+0000,gitlab-ci,20.0,0,0.0,0.0,0.0,305.1MB,319914496,0,1,0.0,0,kaniko_service-go_baseline_cold_run1.json
+kaniko,service-go,baseline,cold,2,2026-01-10T14:06:45+0000,gitlab-ci,23.0,0,0.0,0.0,0.0,305.1MB,319912960,0,1,0.0,0,kaniko_service-go_baseline_cold_run2.json
+kaniko,service-go,baseline,cold,3,2026-01-10T14:11:06+0000,gitlab-ci,22.0,0,0.0,0.0,0.0,305.1MB,319913472,0,1,0.0,0,kaniko_service-go_baseline_cold_run3.json
+kaniko,service-go,baseline,cold,4,2026-01-10T14:14:30+0000,gitlab-ci,22.0,0,0.0,0.0,0.0,305.1MB,319912960,0,1,0.0,0,kaniko_service-go_baseline_cold_run4.json
+kaniko,service-go,baseline,cold,5,2026-01-10T14:18:11+0000,gitlab-ci,21.0,0,0.0,0.0,0.0,305.1MB,319913472,0,1,0.0,0,kaniko_service-go_baseline_cold_run5.json
+kaniko,service-go,optimized,cold,1,2026-01-10T14:34:41+0000,gitlab-ci,21.0,0,0.0,0.0,0.0,7.6MB,7985152,0,1,0.0,0,kaniko_service-go_optimized_cold_run1.json
+kaniko,service-go,optimized,cold,2,2026-01-10T14:06:45+0000,gitlab-ci,18.0,0,0.0,0.0,0.0,7.6MB,7985152,0,1,0.0,0,kaniko_service-go_optimized_cold_run2.json
+kaniko,service-go,optimized,cold,3,2026-01-10T14:11:06+0000,gitlab-ci,19.0,0,0.0,0.0,0.0,7.6MB,7985152,0,1,0.0,0,kaniko_service-go_optimized_cold_run3.json
+kaniko,service-go,optimized,cold,4,2026-01-10T14:14:30+0000,gitlab-ci,19.0,0,0.0,0.0,0.0,7.6MB,7985152,0,1,0.0,0,kaniko_service-go_optimized_cold_run4.json
+kaniko,service-go,optimized,cold,5,2026-01-10T14:18:12+0000,gitlab-ci,18.0,0,0.0,0.0,0.0,7.6MB,7985152,0,1,0.0,0,kaniko_service-go_optimized_cold_run5.json
+kaniko,service-node,baseline,cold,1,2026-01-10T14:34:45+0000,gitlab-ci,21.0,0,0.0,0.0,0.0,80.4MB,84253696,0,1,0.0,0,kaniko_service-node_baseline_cold_run1.json
+kaniko,service-node,baseline,cold,2,2026-01-10T14:06:46+0000,gitlab-ci,18.0,0,0.0,0.0,0.0,80.4MB,84259840,0,1,0.0,0,kaniko_service-node_baseline_cold_run2.json
+kaniko,service-node,baseline,cold,3,2026-01-10T14:11:07+0000,gitlab-ci,18.0,0,0.0,0.0,0.0,80.4MB,84281344,0,1,0.0,0,kaniko_service-node_baseline_cold_run3.json
+kaniko,service-node,baseline,cold,4,2026-01-10T14:14:31+0000,gitlab-ci,20.0,0,0.0,0.0,0.0,80.4MB,84277760,0,1,0.0,0,kaniko_service-node_baseline_cold_run4.json
+kaniko,service-node,baseline,cold,5,2026-01-10T14:18:13+0000,gitlab-ci,20.0,0,0.0,0.0,0.0,80.4MB,84258816,0,1,0.0,0,kaniko_service-node_baseline_cold_run5.json
+kaniko,service-node,optimized,cold,1,2026-01-10T14:34:41+0000,gitlab-ci,18.0,0,0.0,0.0,0.0,80.4MB,84256768,0,1,0.0,0,kaniko_service-node_optimized_cold_run1.json
+kaniko,service-node,optimized,cold,2,2026-01-10T14:03:58+0000,gitlab-ci,19.0,0,0.0,0.0,0.0,80.4MB,84262400,0,1,0.0,0,kaniko_service-node_optimized_cold_run2.json
+kaniko,service-node,optimized,cold,3,2026-01-10T14:11:07+0000,gitlab-ci,18.0,0,0.0,0.0,0.0,80.4MB,84307968,0,1,0.0,0,kaniko_service-node_optimized_cold_run3.json
+kaniko,service-node,optimized,cold,4,2026-01-10T14:14:32+0000,gitlab-ci,19.0,0,0.0,0.0,0.0,80.4MB,84277248,0,1,0.0,0,kaniko_service-node_optimized_cold_run4.json
+kaniko,service-node,optimized,cold,5,2026-01-10T14:18:13+0000,gitlab-ci,21.0,0,0.0,0.0,0.0,80.4MB,84286976,0,1,0.0,0,kaniko_service-node_optimized_cold_run5.json
+kaniko,service-python,baseline,cold,1,2026-01-10T14:34:43+0000,gitlab-ci,22.0,0,0.0,0.0,0.0,97.4MB,102146560,0,1,0.0,0,kaniko_service-python_baseline_cold_run1.json
+kaniko,service-python,baseline,cold,2,2026-01-10T14:03:59+0000,gitlab-ci,19.0,0,0.0,0.0,0.0,97.4MB,102141952,0,1,0.0,0,kaniko_service-python_baseline_cold_run2.json
+kaniko,service-python,baseline,cold,3,2026-01-10T14:11:08+0000,gitlab-ci,23.0,0,0.0,0.0,0.0,97.4MB,102141952,0,1,0.0,0,kaniko_service-python_baseline_cold_run3.json
+kaniko,service-python,baseline,cold,4,2026-01-10T14:14:32+0000,gitlab-ci,20.0,0,0.0,0.0,0.0,97.4MB,102146048,0,1,0.0,0,kaniko_service-python_baseline_cold_run4.json
+kaniko,service-python,baseline,cold,5,2026-01-10T14:18:14+0000,gitlab-ci,25.0,0,0.0,0.0,0.0,97.4MB,102142464,0,1,0.0,0,kaniko_service-python_baseline_cold_run5.json
+kaniko,service-python,optimized,cold,1,2026-01-10T14:34:43+0000,gitlab-ci,21.0,0,0.0,0.0,0.0,97.4MB,102149120,0,1,0.0,0,kaniko_service-python_optimized_cold_run1.json
+kaniko,service-python,optimized,cold,2,2026-01-10T14:06:47+0000,gitlab-ci,25.0,0,0.0,0.0,0.0,97.4MB,102144512,0,1,0.0,0,kaniko_service-python_optimized_cold_run2.json
+kaniko,service-python,optimized,cold,3,2026-01-10T14:11:09+0000,gitlab-ci,21.0,0,0.0,0.0,0.0,97.4MB,102146048,0,1,0.0,0,kaniko_service-python_optimized_cold_run3.json
+kaniko,service-python,optimized,cold,4,2026-01-10T14:14:34+0000,gitlab-ci,24.0,0,0.0,0.0,0.0,97.4MB,102146048,0,1,0.0,0,kaniko_service-python_optimized_cold_run4.json
+kaniko,service-python,optimized,cold,5,2026-01-10T14:18:15+0000,gitlab-ci,29.0,0,0.0,0.0,0.0,97.4MB,102146048,0,1,0.0,0,kaniko_service-python_optimized_cold_run5.json

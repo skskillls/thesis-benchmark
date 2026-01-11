@@ -1,0 +1,13 @@
+,,,cpu_percent,cpu_percent,cpu_percent,cpu_percent
+,,,mean,std,min,max
+ci_system,tool,cache_scenario,,,,
+github-actions,buildah,cold,118.67,35.14,64,172
+github-actions,buildah,dirty,110.07,47.96,31,176
+github-actions,buildah,warm,40.27,13.8,23,63
+github-actions,buildkit,cold,1.9,1.09,0,4
+github-actions,buildkit,dirty,10.1,16.17,1,47
+github-actions,buildkit,warm,52.6,5.41,41,66
+github-actions,kaniko,cold,0.0,0.0,0,0
+github-actions,kaniko,dirty,0.0,0.0,0,0
+github-actions,kaniko,warm,0.0,0.0,0,0
+gitlab-ci,kaniko,cold,0.0,0.0,0,0

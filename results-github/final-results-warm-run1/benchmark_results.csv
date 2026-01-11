@@ -1,0 +1,37 @@
+tool,service,dockerfile_type,cache_scenario,run_number,timestamp,ci_system,build_duration_seconds,cpu_percent,cpu_user_seconds,cpu_system_seconds,memory_peak_mb,image_size,image_size_bytes,cache_hits,cache_total_steps,cache_hit_ratio,exit_code
+kaniko,service-python,optimized,warm,1,2026-01-04T11:42:37+00:00,github-actions,34.061022642,0,0,0,0,97.5MB,102209024,0,4,0.0,0
+buildkit,service-node,baseline,warm,1,2026-01-04T11:43:20+00:00,github-actions,1.22,52,0.43,0.2,62.69,263MB,263179004,3,30,0.1,0
+buildah,service-go,optimized,warm,1,2026-01-04T11:43:20+00:00,github-actions,1.7,29,0.26,0.24,36.05,15.4 MB,0,7,9,0.7778,0
+buildkit,service-go,baseline,warm,1,2026-01-04T11:43:35+00:00,github-actions,3.32,57,1.24,0.67,64.84,884MB,884072469,3,30,0.1,0
+buildah,service-node,baseline,warm,1,2026-01-04T11:43:17+00:00,github-actions,0.37,63,0.12,0.1,35.05,274 MB,0,4,5,0.8,0
+kaniko,service-python,baseline,warm,1,2026-01-04T11:42:37+00:00,github-actions,32.108624301,0,0,0,0,97.5MB,102210560,0,3,0.0,0
+kaniko,service-node,baseline,warm,1,2026-01-04T11:42:37+00:00,github-actions,35.81733742,0,0,0,0,80.4MB,84313088,0,3,0.0,0
+buildah,service-python,optimized,warm,1,2026-01-04T11:43:12+00:00,github-actions,1.1,30,0.18,0.15,33.44,290 MB,0,5,6,0.8333,0
+kaniko,service-node,optimized,warm,1,2026-01-04T11:42:37+00:00,github-actions,37.868005371,0,0,0,0,80.4MB,84315136,0,4,0.0,0
+buildah,service-go,baseline,warm,1,2026-01-04T11:43:23+00:00,github-actions,1.05,23,0.12,0.11,34.41,909 MB,0,4,5,0.8,0
+buildkit,service-python,optimized,warm,1,2026-01-04T11:43:15+00:00,github-actions,1.45,56,0.66,0.15,60.83,280MB,279505962,4,32,0.125,0
+buildah,service-python,baseline,warm,1,2026-01-04T11:43:16+00:00,github-actions,1.07,24,0.14,0.12,33.72,290 MB,0,4,5,0.8,0
+buildkit,service-go,optimized,warm,1,2026-01-04T11:43:15+00:00,github-actions,0.37,44,0.1,0.06,56.73,15.2MB,15155094,6,43,0.1395,0
+buildkit,service-python,baseline,warm,1,2026-01-04T11:43:19+00:00,github-actions,1.28,52,0.43,0.24,60.54,280MB,279505962,3,30,0.1,0
+kaniko,service-go,optimized,warm,1,2026-01-04T11:42:37+00:00,github-actions,42.017634042,0,0,0,0,7.6MB,7985152,0,6,0.0,0
+kaniko,service-go,baseline,warm,1,2026-01-04T11:42:37+00:00,github-actions,47.169378961,0,0,0,0,305.1MB,319916032,0,3,0.0,0
+buildah,service-node,optimized,warm,1,2026-01-04T11:43:19+00:00,github-actions,0.96,36,0.19,0.15,35.24,274 MB,0,5,6,0.8333,0
+buildkit,service-node,optimized,warm,1,2026-01-04T11:43:13+00:00,github-actions,1.14,50,0.37,0.19,62.87,263MB,263179003,4,32,0.125,0
+kaniko,service-python,optimized,warm,1,2026-01-04T11:42:37+00:00,github-actions,34.061022642,0,0,0,0,97.5MB,102209024,0,4,0.0,0
+buildkit,service-node,baseline,warm,1,2026-01-04T11:43:20+00:00,github-actions,1.22,52,0.43,0.2,62.69,263MB,263179004,3,30,0.1,0
+buildah,service-go,optimized,warm,1,2026-01-04T11:43:20+00:00,github-actions,1.7,29,0.26,0.24,36.05,15.4 MB,0,7,9,0.7778,0
+buildkit,service-go,baseline,warm,1,2026-01-04T11:43:35+00:00,github-actions,3.32,57,1.24,0.67,64.84,884MB,884072469,3,30,0.1,0
+buildah,service-node,baseline,warm,1,2026-01-04T11:43:17+00:00,github-actions,0.37,63,0.12,0.1,35.05,274 MB,0,4,5,0.8,0
+kaniko,service-python,baseline,warm,1,2026-01-04T11:42:37+00:00,github-actions,32.108624301,0,0,0,0,97.5MB,102210560,0,3,0.0,0
+kaniko,service-node,baseline,warm,1,2026-01-04T11:42:37+00:00,github-actions,35.81733742,0,0,0,0,80.4MB,84313088,0,3,0.0,0
+buildah,service-python,optimized,warm,1,2026-01-04T11:43:12+00:00,github-actions,1.1,30,0.18,0.15,33.44,290 MB,0,5,6,0.8333,0
+kaniko,service-node,optimized,warm,1,2026-01-04T11:42:37+00:00,github-actions,37.868005371,0,0,0,0,80.4MB,84315136,0,4,0.0,0
+buildah,service-go,baseline,warm,1,2026-01-04T11:43:23+00:00,github-actions,1.05,23,0.12,0.11,34.41,909 MB,0,4,5,0.8,0
+buildkit,service-python,optimized,warm,1,2026-01-04T11:43:15+00:00,github-actions,1.45,56,0.66,0.15,60.83,280MB,279505962,4,32,0.125,0
+buildah,service-python,baseline,warm,1,2026-01-04T11:43:16+00:00,github-actions,1.07,24,0.14,0.12,33.72,290 MB,0,4,5,0.8,0
+buildkit,service-go,optimized,warm,1,2026-01-04T11:43:15+00:00,github-actions,0.37,44,0.1,0.06,56.73,15.2MB,15155094,6,43,0.1395,0
+buildkit,service-python,baseline,warm,1,2026-01-04T11:43:19+00:00,github-actions,1.28,52,0.43,0.24,60.54,280MB,279505962,3,30,0.1,0
+kaniko,service-go,optimized,warm,1,2026-01-04T11:42:37+00:00,github-actions,42.017634042,0,0,0,0,7.6MB,7985152,0,6,0.0,0
+kaniko,service-go,baseline,warm,1,2026-01-04T11:42:37+00:00,github-actions,47.169378961,0,0,0,0,305.1MB,319916032,0,3,0.0,0
+buildah,service-node,optimized,warm,1,2026-01-04T11:43:19+00:00,github-actions,0.96,36,0.19,0.15,35.24,274 MB,0,5,6,0.8333,0
+buildkit,service-node,optimized,warm,1,2026-01-04T11:43:13+00:00,github-actions,1.14,50,0.37,0.19,62.87,263MB,263179003,4,32,0.125,0
