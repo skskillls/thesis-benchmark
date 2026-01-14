@@ -57,7 +57,7 @@ buildkit:
       - SERVICE: [service-go, service-node, service-python]
         TYPE: [baseline, optimized]
   before_script:
-    - apk add --no-cache bash bc coreutils time
+    - apk add --no-cache bash bc coreutils
     - chmod +x scripts/*.sh
     - until docker info; do sleep 1; done
     - docker buildx create --use
