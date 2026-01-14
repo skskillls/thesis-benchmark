@@ -88,10 +88,10 @@ def main():
     # Save merged CSV
     output_file = 'all_benchmark_results.csv'
     df.to_csv(output_file, index=False)
-    print(f"\n✅ Merged {len(df)} records into {output_file}")
+    print(f"\n Merged {len(df)} records into {output_file}")
     
     # Print summary
-    print(f"\n📊 Summary:")
+    print(f"\n Summary:")
     print(f"   CI Systems: {df['ci_system'].unique().tolist()}")
     print(f"   Tools: {df['tool'].unique().tolist()}")
     print(f"   Services: {df['service'].unique().tolist()}")
@@ -101,11 +101,11 @@ def main():
     
     # Calculate and display statistics
     print("\n" + "="*80)
-    print("📈 COMPREHENSIVE STATISTICS BY TOOL & CACHE SCENARIO")
+    print("COMPREHENSIVE STATISTICS BY TOOL & CACHE SCENARIO")
     print("="*80)
     
     # Build Duration Statistics
-    print("\n🕐 BUILD DURATION (seconds)")
+    print("\n BUILD DURATION (seconds)")
     print("-"*60)
     duration_stats = df.groupby(['ci_system', 'tool', 'cache_scenario']).agg({
         'build_duration_seconds': ['mean', 'std', 'min', 'max', 'count']
@@ -113,7 +113,7 @@ def main():
     print(duration_stats.to_string())
     
     # Image Size Statistics (by tool and dockerfile type)
-    print("\n📦 IMAGE SIZE (bytes)")
+    print("\n IMAGE SIZE (bytes)")
     print("-"*60)
     size_stats = df.groupby(['tool', 'service', 'dockerfile_type']).agg({
         'image_size_bytes': ['mean', 'min', 'max']
@@ -121,7 +121,7 @@ def main():
     print(size_stats.to_string())
     
     # Memory Statistics
-    print("\n🧠 PEAK MEMORY USAGE (MB)")
+    print("\n PEAK MEMORY USAGE (MB)")
     print("-"*60)
     mem_stats = df.groupby(['ci_system', 'tool', 'cache_scenario']).agg({
         'memory_peak_mb': ['mean', 'std', 'min', 'max']
@@ -129,7 +129,7 @@ def main():
     print(mem_stats.to_string())
     
     # CPU Statistics
-    print("\n⚡ CPU USAGE (%)")
+    print("\n CPU USAGE (%)")
     print("-"*60)
     cpu_stats = df.groupby(['ci_system', 'tool', 'cache_scenario']).agg({
         'cpu_percent': ['mean', 'std', 'min', 'max']
@@ -137,7 +137,7 @@ def main():
     print(cpu_stats.to_string())
     
     # Cache Hit Ratio Statistics
-    print("\n💾 CACHE HIT RATIO")
+    print("\n CACHE HIT RATIO")
     print("-"*60)
     cache_stats = df.groupby(['ci_system', 'tool', 'cache_scenario']).agg({
         'cache_hit_ratio': ['mean', 'std', 'min', 'max'],
@@ -155,7 +155,7 @@ def main():
     
     # Create a comprehensive summary table
     print("\n" + "="*80)
-    print("📊 SUMMARY TABLE (for thesis)")
+    print("SUMMARY TABLE (for thesis)")
     print("="*80)
     
     summary = df.groupby(['ci_system', 'tool', 'cache_scenario']).agg({
@@ -169,7 +169,7 @@ def main():
     print(summary.to_string())
     summary.to_csv('thesis_summary_table.csv')
     
-    print("\n✅ All statistics saved:")
+    print("\n All statistics saved:")
     print("   - all_benchmark_results.csv (raw data)")
     print("   - stats_build_duration.csv")
     print("   - stats_image_size.csv")

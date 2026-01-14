@@ -17,11 +17,19 @@ cache: {}
 # ==========================================================================
 test:
   stage: test
-  image: python:3.11-slim
+  image: python:3.9-slim
   before_script:
-    - apt-get update && apt-get install -y golang-go nodejs npm
+    - apt-get update && apt-get install -y curl
+    # Install Go 1.21
+    - curl -LO https://go.dev/dl/go1.21.0.linux-amd64.tar.gz
+    - tar -C /usr/local -xzf go1.21.0.linux-amd64.tar.gz
+    - export PATH=$PATH:/usr/local/go/bin
+    # Install Node.js 18
+    - curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+    - apt-get install -y nodejs
   script:
     # Test Go Service
+    - export PATH=$PATH:/usr/local/go/bin
     - cd service-go && go test -v && cd ..
     
     # Test Node Service
@@ -32,21 +40,64 @@ test:
     - cd service-python && pytest -v && cd ..
 
 # ==========================================================================
-# BUILDKIT - DISABLED
+# BUILDKIT
 # ==========================================================================
-# Technical Limitation: BuildKit requires access to a Docker daemon, which is
-# typically provided via Docker-in-Docker (DinD) service. On shared Kubernetes
-# clusters, DinD is generally unavailable due to security restrictions that
-# prevent running privileged containers. This is a documented limitation of
-# Kubernetes-based CI/CD runners (see: docs.gitlab.com/ee/ci/docker/using_docker_build.html).
-#
-# Error observed: "Cannot connect to the Docker daemon at tcp://docker:2375"
-#
-# Alternative: BuildKit benchmarks are collected via GitHub Actions, which
-# provides native Docker daemon access through its VM-based runners.
+buildkit:
+  stage: benchmark
+  needs: [test]
+  image: docker:24.0
+  services:
+    - docker:24.0-dind
+  variables:
+    DOCKER_HOST: tcp://docker:2376
+    DOCKER_TLS_CERTDIR: "/certs"
+    DOCKER_DRIVER: overlay2
+  parallel:
+    matrix:
+      - SERVICE: [service-go, service-node, service-python]
+        TYPE: [baseline, optimized]
+  before_script:
+    - apk add --no-cache bash bc coreutils
+    - chmod +x scripts/*.sh
+    - docker buildx create --use --name builder
+  script:
+    # Clear Cache (Cold)
+    - |
+      if [ "$CACHE_SCENARIO" = "cold" ]; then
+        docker builder prune -af
+      fi
+    
+    # Prime Cache (Warm)
+    - |
+      if [ "$CACHE_SCENARIO" = "warm" ]; then
+        docker buildx build \
+          --file $SERVICE/Dockerfile.$TYPE \
+          --load -t benchmark-image:latest $SERVICE
+      fi
+    
+    # Prime + Modify (Dirty)
+    - |
+      if [ "$CACHE_SCENARIO" = "dirty" ]; then
+        docker buildx build \
+          --file $SERVICE/Dockerfile.$TYPE \
+          --load $SERVICE
+        ./scripts/simulate_dirty_cache.sh $SERVICE
+      fi
+    
+    # Build with Metrics
+    - |
+      ./scripts/measure_build.sh \
+        buildkit $SERVICE $TYPE \
+        $CACHE_SCENARIO $RUN_NUMBER \
+        docker buildx build \
+          --file $SERVICE/Dockerfile.$TYPE \
+          --progress=plain --load -t benchmark-image:latest $SERVICE
+  artifacts:
+    paths: [results/]
+    expire_in: 1 week
 
 # ==========================================================================
-# KANIKO - The only container build tool that works on K8s runners
+# KANIKO
 # ==========================================================================
 kaniko:
   stage: benchmark
@@ -130,31 +181,98 @@ kaniko:
     expire_in: 1 week
 
 # ==========================================================================
-# BUILDAH - DISABLED
+# BUILDAH
 # ==========================================================================
-# Technical Limitation: Buildah requires either root privileges or specific
-# Linux kernel capabilities (CAP_SYS_ADMIN) for mount operations. On shared
-# Kubernetes clusters, containers run in rootless/unprivileged mode for
-# security isolation between tenants.
-#
-# Error observed: "permission denied" during layer application with
-# "remount flags: 0x44000" indicating missing mount capabilities.
-#
-# Alternative: Buildah benchmarks are collected via GitHub Actions, which
-# supports privileged container operations.
+buildah:
+  stage: benchmark
+  needs: [test]
+  image: quay.io/buildah/stable
+  variables:
+    STORAGE_DRIVER: vfs
+    BUILDAH_ISOLATION: chroot
+  parallel:
+    matrix:
+      - SERVICE: [service-go, service-node, service-python]
+        TYPE: [baseline, optimized]
+  before_script:
+    - dnf install -y bc time || yum install -y bc time || true
+    - chmod +x scripts/*.sh
+  script:
+    # Clear Cache (Cold)
+    - |
+      if [ "$CACHE_SCENARIO" = "cold" ]; then
+        buildah rm --all 2>/dev/null || true
+        buildah rmi --all -f 2>/dev/null || true
+      fi
+    
+    # Prime Cache (Warm)
+    - |
+      if [ "$CACHE_SCENARIO" = "warm" ]; then
+        buildah build --layers \
+          --file $SERVICE/Dockerfile.$TYPE \
+          -t benchmark-image:latest $SERVICE
+      fi
+    
+    # Prime + Modify (Dirty)
+    - |
+      if [ "$CACHE_SCENARIO" = "dirty" ]; then
+        buildah build --layers \
+          --file $SERVICE/Dockerfile.$TYPE \
+          -t benchmark-image:latest $SERVICE
+        ./scripts/simulate_dirty_cache.sh $SERVICE
+      fi
+    
+    # Build with Metrics
+    - |
+      ./scripts/measure_build.sh \
+        buildah $SERVICE $TYPE \
+        $CACHE_SCENARIO $RUN_NUMBER \
+        buildah build --layers \
+          --file $SERVICE/Dockerfile.$TYPE \
+          -t benchmark-image:latest $SERVICE
+  artifacts:
+    paths: [results/]
+    expire_in: 1 week
 
 # ==========================================================================
-# SECURITY (Trivy & Syft) - DISABLED
+# SECURITY SCAN
 # ==========================================================================
-# Technical Limitation: Security scanning tools (Trivy, Syft) require a
-# built container image to analyze. Since image building on this cluster
-# is limited to Kaniko (which outputs to tarball), and these tools expect
-# a Docker daemon for image inspection, security scans cannot be performed.
-#
-# Alternative: Security scans (vulnerability assessment via Trivy and SBOM
-# generation via Syft) are performed on GitHub Actions where Docker daemon
-# is available. This ensures complete security analysis data is still
-# collected as part of the benchmarking study.
+security:
+  stage: security
+  needs: [buildkit]
+  image: docker:24.0
+  services:
+    - docker:24.0-dind
+  variables:
+    DOCKER_HOST: tcp://docker:2376
+    DOCKER_TLS_CERTDIR: "/certs"
+  parallel:
+    matrix:
+      - SERVICE: [service-go, service-node, service-python]
+  before_script:
+    - apk add --no-cache curl
+    # Install Trivy
+    - curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+    # Install Syft
+    - curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+  script:
+    # Build image for scanning
+    - |
+      docker buildx create --use --name scanner 2>/dev/null || true
+      docker buildx build \
+        --file $SERVICE/Dockerfile.optimized \
+        --load -t scan-image:latest $SERVICE
+    
+    # Trivy Scan
+    - trivy image --format json -o trivy-$SERVICE.json scan-image:latest || true
+    
+    # SBOM Generation with Syft
+    - syft scan-image:latest -o spdx-json > sbom-$SERVICE.spdx.json || true
+  artifacts:
+    paths:
+      - trivy-*.json
+      - sbom-*.spdx.json
+    expire_in: 1 week
 
 # ==========================================================================
 # AGGREGATE
@@ -162,7 +280,15 @@ kaniko:
 aggregate:
   stage: aggregate
   image: python:3.11-slim
-  needs: [kaniko]
+  needs:
+    - job: buildkit
+      optional: true
+    - job: kaniko
+      optional: true
+    - job: buildah
+      optional: true
+    - job: security
+      optional: true
   script:
     - mkdir -p final-results
     - find . -name "*.json" -path "./results/*" -exec cp {} final-results/ \;
