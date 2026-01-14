@@ -8,6 +8,7 @@ variables:
   CACHE_SCENARIO: "cold"
   RUN_NUMBER: "1"
   CI_SYSTEM: "gitlab-ci"
+  RUN_SECURITY: "false"
 
 # Disable GitLab caching for scientific validity
 cache: {}
@@ -241,6 +242,8 @@ buildah:
 security:
   stage: security
   needs: [buildkit]
+  rules:
+    - if: $RUN_SECURITY == "true"
   image: docker:24.0
   services:
     - docker:24.0-dind
@@ -293,12 +296,12 @@ aggregate:
     - job: security
       optional: true
   script:
-    - mkdir -p final-results
-    - find . -name "*.json" -path "./results/*" -exec cp {} final-results/ \;
+    - mkdir -p final-results-gitlab-public-${CACHE_SCENARIO}-run${RUN_NUMBER}
+    - find . -name "*.json" -path "./results/*" -exec cp {} final-results-gitlab-public-${CACHE_SCENARIO}-run${RUN_NUMBER}/ \;
     - pip install --quiet pandas
-    - export RESULTS_DIR=final-results
+    - export RESULTS_DIR=final-results-gitlab-public-${CACHE_SCENARIO}-run${RUN_NUMBER}
     - python scripts/collect_metrics.py
   artifacts:
     paths:
-      - final-results/
+      - final-results-gitlab-public-${CACHE_SCENARIO}-run${RUN_NUMBER}/
     expire_in: 1 month
