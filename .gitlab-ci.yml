@@ -49,8 +49,8 @@ buildkit:
   services:
     - docker:24.0-dind
   variables:
-    DOCKER_HOST: tcp://docker:2376
-    DOCKER_TLS_CERTDIR: "/certs"
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
     DOCKER_DRIVER: overlay2
   parallel:
     matrix:
@@ -59,7 +59,8 @@ buildkit:
   before_script:
     - apk add --no-cache bash bc coreutils
     - chmod +x scripts/*.sh
-    - docker buildx create --use --name builder
+    - until docker info; do sleep 1; done
+    - docker buildx create --use
   script:
     # Clear Cache (Cold)
     - |
@@ -244,13 +245,15 @@ security:
   services:
     - docker:24.0-dind
   variables:
-    DOCKER_HOST: tcp://docker:2376
-    DOCKER_TLS_CERTDIR: "/certs"
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
   parallel:
     matrix:
       - SERVICE: [service-go, service-node, service-python]
   before_script:
     - apk add --no-cache curl
+    # Wait for Docker daemon to be ready
+    - until docker info; do sleep 1; done
     # Install Trivy
     - curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
     # Install Syft
