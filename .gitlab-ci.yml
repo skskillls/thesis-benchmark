@@ -190,14 +190,18 @@ buildah:
   needs: [test]
   image: quay.io/buildah/stable
   variables:
-    STORAGE_DRIVER: vfs
+    # Use overlay2 for faster builds (vfs is extremely slow)
+    STORAGE_DRIVER: overlay
     BUILDAH_ISOLATION: chroot
+    # Required for overlay driver in rootless mode
+    _BUILDAH_STARTED_IN_USERNS: ""
+    BUILDAH_LAYERS: "true"
   parallel:
     matrix:
       - SERVICE: [service-go, service-node, service-python]
         TYPE: [baseline, optimized]
   before_script:
-    - dnf install -y bc time || yum install -y bc time || true
+    - dnf install -y bc time fuse-overlayfs || yum install -y bc time fuse-overlayfs || true
     - chmod +x scripts/*.sh
   script:
     # Clear Cache (Cold)
