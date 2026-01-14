@@ -52,7 +52,7 @@ if [ "$USE_GNU_TIME" = true ]; then
     
     PEAK_MEM_MB=$(awk "BEGIN {printf \"%.2f\", ${PEAK_MEM_KB:-0} / 1024}")
 else
-    echo "⚠️ GNU time not available. Using fallback."
+    echo "GNU time not available. Using fallback."
     
     if date +%s.%N >/dev/null 2>&1; then
         START_TIME=$(date +%s.%N)
