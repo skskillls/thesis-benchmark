@@ -10,4 +10,13 @@ github-actions,buildkit,warm,1.47,1.01,0.35,3.83,30
 github-actions,kaniko,cold,35.3,6.19,28.13,50.07,30
 github-actions,kaniko,dirty,35.63,6.3,28.78,49.3,30
 github-actions,kaniko,warm,36.33,7.02,26.81,48.85,30
-gitlab-ci,kaniko,cold,20.8,2.58,18.0,29.0,30
+gitlab-ci,buildah,cold,49.83,10.96,37.8,70.24,18
+gitlab-ci,buildah,dirty,41.1,25.65,4.75,114.98,18
+gitlab-ci,buildah,warm,10.24,25.27,0.4,102.47,18
+gitlab-ci,buildkit,cold,47.94,9.48,41.51,70.47,18
+gitlab-ci,buildkit,dirty,27.09,12.37,4.51,38.4,18
+gitlab-ci,buildkit,warm,2.46,1.82,0.5,6.72,18
+gitlab-ci,kaniko,cold,36.11,7.22,27.0,52.0,18
+gitlab-ci,kaniko,dirty,35.33,7.4,27.0,48.0,18
+gitlab-ci,kaniko,warm,34.72,6.95,27.0,50.0,18
+gitlab-ci-k8s,kaniko,cold,20.8,2.58,18.0,29.0,30

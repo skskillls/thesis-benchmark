@@ -1,0 +1,22 @@
+{
+  "tool": "buildah",
+  "service": "service-node",
+  "dockerfile_type": "baseline",
+  "cache_scenario": "warm",
+  "run_number": 3,
+  "timestamp": "2026-01-14T19:11:57+00:00",
+  "ci_system": "gitlab-ci",
+  "performance": {
+    "build_duration_seconds": 0.40,
+    "cpu_percent": 78,
+    "cpu_user_seconds": 0.17,
+    "cpu_system_seconds": 0.14,
+    "memory_peak_mb": 38.53,
+    "image_size": "275 MB",
+    "image_size_bytes": 0,
+    "cache_hits": 4,
+    "cache_total_steps": 5,
+    "cache_hit_ratio": 0.8000
+  },
+  "exit_code": 0
+}

@@ -1,0 +1,37 @@
+tool,service,dockerfile_type,cache_scenario,run_number,timestamp,ci_system,build_duration_seconds,cpu_percent,cpu_user_seconds,cpu_system_seconds,memory_peak_mb,image_size,image_size_bytes,cache_hits,cache_total_steps,cache_hit_ratio,exit_code
+buildkit,service-go,baseline,warm,2,2026-01-14T19:06:47+00:00,gitlab-ci,6.14,0,0,0,0,884MB,884103034,3,32,0.0938,0
+kaniko,service-node,baseline,warm,2,2026-01-14T19:05:15+0000,gitlab-ci,31,0,0,0,0,80.5MB,84372992,0,1,0,0
+buildkit,service-python,optimized,warm,2,2026-01-14T19:06:22+00:00,gitlab-ci,2.04,0,0,0,0,280MB,279526054,4,32,0.125,0
+buildkit,service-node,optimized,warm,2,2026-01-14T19:06:28+00:00,gitlab-ci,1.8,0,0,0,0,263MB,263463351,4,32,0.125,0
+kaniko,service-python,baseline,warm,2,2026-01-14T19:05:14+0000,gitlab-ci,27,0,0,0,0,97.5MB,102212096,0,1,0,0
+buildah,service-node,optimized,warm,2,2026-01-14T19:06:17+00:00,gitlab-ci,0.58,78,0.23,0.22,39.21,275 MB,0,5,6,0.8333,0
+buildkit,service-node,baseline,warm,2,2026-01-14T19:06:27+00:00,gitlab-ci,2.01,0,0,0,0,263MB,263463347,3,30,0.1,0
+kaniko,service-go,optimized,warm,2,2026-01-14T19:05:14+0000,gitlab-ci,41,0,0,0,0,7.6MB,7985152,0,1,0,0
+buildah,service-go,baseline,warm,2,2026-01-14T19:06:34+00:00,gitlab-ci,0.43,74,0.16,0.15,38.37,909 MB,0,4,5,0.8,0
+buildkit,service-python,baseline,warm,2,2026-01-14T19:06:20+00:00,gitlab-ci,2.0,0,0,0,0,280MB,279526054,3,30,0.1,0
+buildkit,service-go,optimized,warm,2,2026-01-14T19:06:22+00:00,gitlab-ci,0.65,0,0,0,0,15.2MB,15159990,6,43,0.1395,0
+buildah,service-node,baseline,warm,2,2026-01-14T19:06:14+00:00,gitlab-ci,0.42,76,0.17,0.14,38.73,275 MB,0,4,5,0.8,0
+kaniko,service-node,optimized,warm,2,2026-01-14T19:05:14+0000,gitlab-ci,31,0,0,0,0,80.5MB,84375552,0,1,0,0
+kaniko,service-python,optimized,warm,2,2026-01-14T19:05:15+0000,gitlab-ci,27,0,0,0,0,97.5MB,102205952,0,1,0,0
+kaniko,service-go,baseline,warm,2,2026-01-14T19:05:14+0000,gitlab-ci,45,0,0,0,0,305.1MB,319918592,0,1,0,0
+buildah,service-go,optimized,warm,2,2026-01-14T19:07:24+00:00,gitlab-ci,1.62,53,0.46,0.41,41.64,15.4 MB,0,7,9,0.7778,0
+buildah,service-python,baseline,warm,2,2026-01-14T19:06:15+00:00,gitlab-ci,0.42,73,0.16,0.15,39.1,290 MB,0,4,5,0.8,0
+buildah,service-python,optimized,warm,2,2026-01-14T19:06:20+00:00,gitlab-ci,0.67,78,0.28,0.24,39.02,290 MB,0,5,6,0.8333,0
+buildkit,service-go,baseline,warm,2,2026-01-14T19:06:47+00:00,gitlab-ci,6.14,0,0,0,0,884MB,884103034,3,32,0.0938,0
+kaniko,service-node,baseline,warm,2,2026-01-14T19:05:15+0000,gitlab-ci,31,0,0,0,0,80.5MB,84372992,0,1,0,0
+buildkit,service-python,optimized,warm,2,2026-01-14T19:06:22+00:00,gitlab-ci,2.04,0,0,0,0,280MB,279526054,4,32,0.125,0
+buildkit,service-node,optimized,warm,2,2026-01-14T19:06:28+00:00,gitlab-ci,1.8,0,0,0,0,263MB,263463351,4,32,0.125,0
+kaniko,service-python,baseline,warm,2,2026-01-14T19:05:14+0000,gitlab-ci,27,0,0,0,0,97.5MB,102212096,0,1,0,0
+buildah,service-node,optimized,warm,2,2026-01-14T19:06:17+00:00,gitlab-ci,0.58,78,0.23,0.22,39.21,275 MB,0,5,6,0.8333,0
+buildkit,service-node,baseline,warm,2,2026-01-14T19:06:27+00:00,gitlab-ci,2.01,0,0,0,0,263MB,263463347,3,30,0.1,0
+kaniko,service-go,optimized,warm,2,2026-01-14T19:05:14+0000,gitlab-ci,41,0,0,0,0,7.6MB,7985152,0,1,0,0
+buildah,service-go,baseline,warm,2,2026-01-14T19:06:34+00:00,gitlab-ci,0.43,74,0.16,0.15,38.37,909 MB,0,4,5,0.8,0
+buildkit,service-python,baseline,warm,2,2026-01-14T19:06:20+00:00,gitlab-ci,2.0,0,0,0,0,280MB,279526054,3,30,0.1,0
+buildkit,service-go,optimized,warm,2,2026-01-14T19:06:22+00:00,gitlab-ci,0.65,0,0,0,0,15.2MB,15159990,6,43,0.1395,0
+buildah,service-node,baseline,warm,2,2026-01-14T19:06:14+00:00,gitlab-ci,0.42,76,0.17,0.14,38.73,275 MB,0,4,5,0.8,0
+kaniko,service-node,optimized,warm,2,2026-01-14T19:05:14+0000,gitlab-ci,31,0,0,0,0,80.5MB,84375552,0,1,0,0
+kaniko,service-python,optimized,warm,2,2026-01-14T19:05:15+0000,gitlab-ci,27,0,0,0,0,97.5MB,102205952,0,1,0,0
+kaniko,service-go,baseline,warm,2,2026-01-14T19:05:14+0000,gitlab-ci,45,0,0,0,0,305.1MB,319918592,0,1,0,0
+buildah,service-go,optimized,warm,2,2026-01-14T19:07:24+00:00,gitlab-ci,1.62,53,0.46,0.41,41.64,15.4 MB,0,7,9,0.7778,0
+buildah,service-python,baseline,warm,2,2026-01-14T19:06:15+00:00,gitlab-ci,0.42,73,0.16,0.15,39.1,290 MB,0,4,5,0.8,0
+buildah,service-python,optimized,warm,2,2026-01-14T19:06:20+00:00,gitlab-ci,0.67,78,0.28,0.24,39.02,290 MB,0,5,6,0.8333,0

@@ -1,0 +1,22 @@
+{
+  "tool": "kaniko",
+  "service": "service-python",
+  "dockerfile_type": "optimized",
+  "cache_scenario": "dirty",
+  "run_number": 3,
+  "timestamp": "2026-01-14T19:24:05+0000",
+  "ci_system": "gitlab-ci",
+  "performance": {
+    "build_duration_seconds": 27,
+    "cpu_percent": 0,
+    "cpu_user_seconds": 0,
+    "cpu_system_seconds": 0,
+    "memory_peak_mb": 0,
+    "image_size": "97.5MB",
+    "image_size_bytes": 102206464,
+    "cache_hits": 0,
+    "cache_total_steps": 1,
+    "cache_hit_ratio": 0
+  },
+  "exit_code": 0
+}

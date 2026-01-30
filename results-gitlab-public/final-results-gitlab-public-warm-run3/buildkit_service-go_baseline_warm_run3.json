@@ -1,0 +1,22 @@
+{
+  "tool": "buildkit",
+  "service": "service-go",
+  "dockerfile_type": "baseline",
+  "cache_scenario": "warm",
+  "run_number": 3,
+  "timestamp": "2026-01-14T19:12:23+00:00",
+  "ci_system": "gitlab-ci",
+  "performance": {
+    "build_duration_seconds": 5.63,
+    "cpu_percent": 0,
+    "cpu_user_seconds": 0,
+    "cpu_system_seconds": 0,
+    "memory_peak_mb": 0,
+    "image_size": "884MB",
+    "image_size_bytes": 884103034,
+    "cache_hits": 3,
+    "cache_total_steps": 32,
+    "cache_hit_ratio": 0.0938
+  },
+  "exit_code": 0
+}

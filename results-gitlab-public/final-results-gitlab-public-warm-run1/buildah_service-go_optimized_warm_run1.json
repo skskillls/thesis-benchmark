@@ -1,0 +1,22 @@
+{
+  "tool": "buildah",
+  "service": "service-go",
+  "dockerfile_type": "optimized",
+  "cache_scenario": "warm",
+  "run_number": 1,
+  "timestamp": "2026-01-14T18:09:28+00:00",
+  "ci_system": "gitlab-ci",
+  "performance": {
+    "build_duration_seconds": 102.47,
+    "cpu_percent": 31,
+    "cpu_user_seconds": 4.32,
+    "cpu_system_seconds": 28.00,
+    "memory_peak_mb": 57.65,
+    "image_size": "15.4 MB",
+    "image_size_bytes": 0,
+    "cache_hits": 7,
+    "cache_total_steps": 9,
+    "cache_hit_ratio": 0.7778
+  },
+  "exit_code": 0
+}

@@ -1,0 +1,22 @@
+{
+  "tool": "buildkit",
+  "service": "service-node",
+  "dockerfile_type": "optimized",
+  "cache_scenario": "cold",
+  "run_number": 2,
+  "timestamp": "2026-01-14T18:38:20+00:00",
+  "ci_system": "gitlab-ci",
+  "performance": {
+    "build_duration_seconds": 46.34,
+    "cpu_percent": 0,
+    "cpu_user_seconds": 0,
+    "cpu_system_seconds": 0,
+    "memory_peak_mb": 0,
+    "image_size": "263MB",
+    "image_size_bytes": 263463329,
+    "cache_hits": 0,
+    "cache_total_steps": 93,
+    "cache_hit_ratio": 0.0000
+  },
+  "exit_code": 0
+}

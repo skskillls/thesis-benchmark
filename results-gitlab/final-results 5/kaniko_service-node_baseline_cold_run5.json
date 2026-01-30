@@ -5,7 +5,7 @@
   "cache_scenario": "cold",
   "run_number": 5,
   "timestamp": "2026-01-10T14:18:13+0000",
-  "ci_system": "gitlab-ci",
+  "ci_system": "gitlab-ci-k8s",
   "performance": {
     "build_duration_seconds": 20,
     "cpu_percent": 0,

@@ -1,0 +1,37 @@
+tool,service,dockerfile_type,cache_scenario,run_number,timestamp,ci_system,build_duration_seconds,cpu_percent,cpu_user_seconds,cpu_system_seconds,memory_peak_mb,image_size,image_size_bytes,cache_hits,cache_total_steps,cache_hit_ratio,exit_code
+kaniko,service-go,optimized,dirty,3,2026-01-14T19:24:04+0000,gitlab-ci,42,0,0,0,0,7.6MB,7985152,0,1,0,0
+buildkit,service-node,optimized,dirty,3,2026-01-14T19:25:13+00:00,gitlab-ci,36.91,0,0,0,0,263MB,263463418,1,52,0.0192,0
+buildkit,service-python,optimized,dirty,3,2026-01-14T19:25:11+00:00,gitlab-ci,4.58,0,0,0,0,280MB,279526093,3,33,0.0909,0
+kaniko,service-node,optimized,dirty,3,2026-01-14T19:24:05+0000,gitlab-ci,33,0,0,0,0,80.5MB,84378624,0,1,0,0
+kaniko,service-node,baseline,dirty,3,2026-01-14T19:24:05+0000,gitlab-ci,33,0,0,0,0,80.5MB,84378112,0,1,0,0
+buildkit,service-python,baseline,dirty,3,2026-01-14T19:25:19+00:00,gitlab-ci,37.31,0,0,0,0,280MB,279526093,1,128,0.0078,0
+kaniko,service-go,baseline,dirty,3,2026-01-14T19:24:05+0000,gitlab-ci,47,0,0,0,0,305.1MB,319917056,0,1,0,0
+buildkit,service-node,baseline,dirty,3,2026-01-14T19:25:12+00:00,gitlab-ci,37.76,0,0,0,0,263MB,263463426,1,49,0.0204,0
+buildah,service-node,optimized,dirty,3,2026-01-14T19:25:48+00:00,gitlab-ci,43.96,58,16.35,9.23,268.71,275 MB,0,1,6,0.1667,0
+buildah,service-node,baseline,dirty,3,2026-01-14T19:25:04+00:00,gitlab-ci,39.01,60,15.8,7.84,277.24,275 MB,0,1,5,0.2,0
+buildkit,service-go,optimized,dirty,3,2026-01-14T19:25:13+00:00,gitlab-ci,18.39,0,0,0,0,15.2MB,15159990,3,43,0.0698,0
+buildah,service-go,baseline,dirty,3,2026-01-14T19:25:21+00:00,gitlab-ci,41.33,107,32.98,11.34,209.95,909 MB,0,1,5,0.2,0
+buildah,service-go,optimized,dirty,3,2026-01-14T19:25:31+00:00,gitlab-ci,41.93,100,31.43,10.65,209.99,15.4 MB,0,3,9,0.3333,0
+buildah,service-python,baseline,dirty,3,2026-01-14T19:25:08+00:00,gitlab-ci,33.78,80,21.18,5.98,143.6,290 MB,0,1,5,0.2,0
+buildkit,service-go,baseline,dirty,3,2026-01-14T19:25:40+00:00,gitlab-ci,30.61,0,0,0,0,884MB,884103074,1,37,0.027,0
+kaniko,service-python,optimized,dirty,3,2026-01-14T19:24:05+0000,gitlab-ci,27,0,0,0,0,97.5MB,102206464,0,1,0,0
+kaniko,service-python,baseline,dirty,3,2026-01-14T19:24:06+0000,gitlab-ci,30,0,0,0,0,97.4MB,102178304,0,1,0,0
+buildah,service-python,optimized,dirty,3,2026-01-14T19:25:11+00:00,gitlab-ci,4.82,46,0.74,1.49,53.87,290 MB,0,3,6,0.5,0
+kaniko,service-go,optimized,dirty,3,2026-01-14T19:24:04+0000,gitlab-ci,42,0,0,0,0,7.6MB,7985152,0,1,0,0
+buildkit,service-node,optimized,dirty,3,2026-01-14T19:25:13+00:00,gitlab-ci,36.91,0,0,0,0,263MB,263463418,1,52,0.0192,0
+buildkit,service-python,optimized,dirty,3,2026-01-14T19:25:11+00:00,gitlab-ci,4.58,0,0,0,0,280MB,279526093,3,33,0.0909,0
+kaniko,service-node,optimized,dirty,3,2026-01-14T19:24:05+0000,gitlab-ci,33,0,0,0,0,80.5MB,84378624,0,1,0,0
+kaniko,service-node,baseline,dirty,3,2026-01-14T19:24:05+0000,gitlab-ci,33,0,0,0,0,80.5MB,84378112,0,1,0,0
+buildkit,service-python,baseline,dirty,3,2026-01-14T19:25:19+00:00,gitlab-ci,37.31,0,0,0,0,280MB,279526093,1,128,0.0078,0
+kaniko,service-go,baseline,dirty,3,2026-01-14T19:24:05+0000,gitlab-ci,47,0,0,0,0,305.1MB,319917056,0,1,0,0
+buildkit,service-node,baseline,dirty,3,2026-01-14T19:25:12+00:00,gitlab-ci,37.76,0,0,0,0,263MB,263463426,1,49,0.0204,0
+buildah,service-node,optimized,dirty,3,2026-01-14T19:25:48+00:00,gitlab-ci,43.96,58,16.35,9.23,268.71,275 MB,0,1,6,0.1667,0
+buildah,service-node,baseline,dirty,3,2026-01-14T19:25:04+00:00,gitlab-ci,39.01,60,15.8,7.84,277.24,275 MB,0,1,5,0.2,0
+buildkit,service-go,optimized,dirty,3,2026-01-14T19:25:13+00:00,gitlab-ci,18.39,0,0,0,0,15.2MB,15159990,3,43,0.0698,0
+buildah,service-go,baseline,dirty,3,2026-01-14T19:25:21+00:00,gitlab-ci,41.33,107,32.98,11.34,209.95,909 MB,0,1,5,0.2,0
+buildah,service-go,optimized,dirty,3,2026-01-14T19:25:31+00:00,gitlab-ci,41.93,100,31.43,10.65,209.99,15.4 MB,0,3,9,0.3333,0
+buildah,service-python,baseline,dirty,3,2026-01-14T19:25:08+00:00,gitlab-ci,33.78,80,21.18,5.98,143.6,290 MB,0,1,5,0.2,0
+buildkit,service-go,baseline,dirty,3,2026-01-14T19:25:40+00:00,gitlab-ci,30.61,0,0,0,0,884MB,884103074,1,37,0.027,0
+kaniko,service-python,optimized,dirty,3,2026-01-14T19:24:05+0000,gitlab-ci,27,0,0,0,0,97.5MB,102206464,0,1,0,0
+kaniko,service-python,baseline,dirty,3,2026-01-14T19:24:06+0000,gitlab-ci,30,0,0,0,0,97.4MB,102178304,0,1,0,0
+buildah,service-python,optimized,dirty,3,2026-01-14T19:25:11+00:00,gitlab-ci,4.82,46,0.74,1.49,53.87,290 MB,0,3,6,0.5,0

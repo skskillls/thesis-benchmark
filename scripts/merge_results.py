@@ -52,8 +52,9 @@ def main():
     
     # Look for results in multiple locations
     search_paths = [
-        'results-github/*/*.json',
-        'results-gitlab/*/*.json', 
+        'results-github/*/*.json',           
+        'results-gitlab/*/*.json',           
+        'results-gitlab-public/*/*.json',  
         'results/*.json',
         'final-results/*.json',
     ]

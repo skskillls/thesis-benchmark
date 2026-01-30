@@ -1,0 +1,22 @@
+{
+  "tool": "buildkit",
+  "service": "service-python",
+  "dockerfile_type": "baseline",
+  "cache_scenario": "dirty",
+  "run_number": 1,
+  "timestamp": "2026-01-14T18:15:50+00:00",
+  "ci_system": "gitlab-ci",
+  "performance": {
+    "build_duration_seconds": 34.01,
+    "cpu_percent": 0,
+    "cpu_user_seconds": 0,
+    "cpu_system_seconds": 0,
+    "memory_peak_mb": 0,
+    "image_size": "280MB",
+    "image_size_bytes": 279526093,
+    "cache_hits": 1,
+    "cache_total_steps": 128,
+    "cache_hit_ratio": 0.0078
+  },
+  "exit_code": 0
+}
