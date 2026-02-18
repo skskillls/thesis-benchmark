@@ -415,7 +415,7 @@ jobs:
       - name: Aggregate
         run: |
           mkdir -p final-results
-          find all-results -name "*.json" -exec cp {} final-results/ \;
+          find all-results -name "*.json" -exec cp -n {} final-results/ \;
           export RESULTS_DIR=final-results
           python scripts/collect_metrics.py
 
