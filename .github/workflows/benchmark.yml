@@ -15,6 +15,10 @@ on:
         default: '1'
         type: choice
         options: ['1', '2', '3', '4', '5']
+      selfhosted_only:
+        description: 'Run only self-hosted jobs (skip cloud BuildKit/Kaniko/Buildah)'
+        type: boolean
+        default: false
   push:
     branches: [main]
 
@@ -71,6 +75,7 @@ jobs:
   # ==========================================================================
   buildkit:
     name: BuildKit (${{ matrix.service }}-${{ matrix.type }})
+    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.selfhosted_only != 'true' }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -126,6 +131,7 @@ jobs:
   # ==========================================================================
   kaniko:
     name: Kaniko (${{ matrix.service }}-${{ matrix.type }})
+    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.selfhosted_only != 'true' }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -216,6 +222,7 @@ jobs:
   # ==========================================================================
   buildah:
     name: Buildah (${{ matrix.service }}-${{ matrix.type }})
+    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.selfhosted_only != 'true' }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -269,6 +276,7 @@ jobs:
   # ==========================================================================
   security:
     name: Security (${{ matrix.service }})
+    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.selfhosted_only != 'true' }}
     runs-on: ubuntu-latest
     needs: [buildkit]
     strategy:
@@ -306,12 +314,93 @@ jobs:
             sbom-${{ matrix.service }}.spdx.json
 
   # ==========================================================================
+  # KANIKO SELF-HOSTED
+  # ==========================================================================
+  kaniko-selfhosted:
+    name: Kaniko SH (${{ matrix.service }}-${{ matrix.type }})
+    runs-on: [self-hosted, linux]
+    strategy:
+      fail-fast: false
+      matrix:
+        service: [service-go, service-node, service-python]
+        type: [baseline, optimized]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build with Metrics
+        run: |
+          mkdir -p results
+          START_TIMESTAMP=$(date -Iseconds)
+          START_TIME=$(date +%s.%N)
+          
+          docker run --rm \
+            -v ${{ github.workspace }}:/workspace \
+            gcr.io/kaniko-project/executor:latest \
+            --dockerfile=/workspace/${{ matrix.service }}/Dockerfile.${{ matrix.type }} \
+            --context=dir:///workspace/${{ matrix.service }} \
+            --verbosity=info \
+            --no-push \
+            --tarPath=/workspace/image.tar 2>&1 | tee /tmp/build.log || true
+          
+          END_TIME=$(date +%s.%N)
+          DURATION=$(echo "$END_TIME - $START_TIME" | bc)
+          
+          IMAGE_SIZE_BYTES=$(stat -c%s image.tar 2>/dev/null || echo "0")
+          if [ "$IMAGE_SIZE_BYTES" -ge 1048576 ] 2>/dev/null; then
+            IMAGE_SIZE="$(awk "BEGIN {printf \"%.1fMB\", $IMAGE_SIZE_BYTES/1048576}")"
+          elif [ "$IMAGE_SIZE_BYTES" -ge 1024 ] 2>/dev/null; then
+            IMAGE_SIZE="$(awk "BEGIN {printf \"%.1fKB\", $IMAGE_SIZE_BYTES/1024}")"
+          else
+            IMAGE_SIZE="${IMAGE_SIZE_BYTES}B"
+          fi
+          
+          CACHE_HITS=$(grep -c "Using caching version" /tmp/build.log 2>/dev/null || true)
+          CACHE_TOTAL=$(grep -cE "(RUN|COPY|ADD|FROM)" /tmp/build.log 2>/dev/null || true)
+          CACHE_HITS=$(echo "$CACHE_HITS" | tr -d '[:space:]')
+          CACHE_TOTAL=$(echo "$CACHE_TOTAL" | tr -d '[:space:]')
+          CACHE_HITS=${CACHE_HITS:-0}
+          CACHE_TOTAL=${CACHE_TOTAL:-1}
+          if ! [[ "$CACHE_HITS" =~ ^[0-9]+$ ]]; then CACHE_HITS=0; fi
+          if ! [[ "$CACHE_TOTAL" =~ ^[0-9]+$ ]] || [ "$CACHE_TOTAL" -eq 0 ]; then CACHE_TOTAL=1; fi
+          CACHE_HIT_RATIO=$(LC_ALL=C awk -v hits="$CACHE_HITS" -v total="$CACHE_TOTAL" 'BEGIN {printf "%.4f", hits / total}')
+          
+          cat > results/kaniko_${{ matrix.service }}_${{ matrix.type }}_${{ env.CACHE_SCENARIO }}_run${{ env.RUN_NUMBER }}.json << EOF
+          {
+            "tool": "kaniko",
+            "service": "${{ matrix.service }}",
+            "dockerfile_type": "${{ matrix.type }}",
+            "cache_scenario": "${{ env.CACHE_SCENARIO }}",
+            "run_number": ${{ env.RUN_NUMBER }},
+            "timestamp": "$START_TIMESTAMP",
+            "ci_system": "github-actions-selfhosted",
+            "performance": {
+              "build_duration_seconds": $DURATION,
+              "cpu_percent": 0,
+              "cpu_user_seconds": 0,
+              "cpu_system_seconds": 0,
+              "memory_peak_mb": 0,
+              "image_size": "$IMAGE_SIZE",
+              "image_size_bytes": $IMAGE_SIZE_BYTES,
+              "cache_hits": $CACHE_HITS,
+              "cache_total_steps": $CACHE_TOTAL,
+              "cache_hit_ratio": $CACHE_HIT_RATIO
+            },
+            "exit_code": 0
+          }
+          EOF
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: results-kaniko-selfhosted-${{ matrix.service }}-${{ matrix.type }}-${{ env.CACHE_SCENARIO }}-run${{ env.RUN_NUMBER }}
+          path: results/
+
+  # ==========================================================================
   # AGGREGATE
   # ==========================================================================
   aggregate:
     name: Aggregate Results
     runs-on: ubuntu-latest
-    needs: [buildkit, kaniko, buildah, security]
+    needs: [buildkit, kaniko, buildah, security, kaniko-selfhosted]
     if: always()
     steps:
       - uses: actions/checkout@v4
