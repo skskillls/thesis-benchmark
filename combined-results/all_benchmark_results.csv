@@ -269,6 +269,24 @@ kaniko,service-python,optimized,warm,2,2026-01-04T11:46:12+00:00,github-actions,
 kaniko,service-python,optimized,warm,3,2026-01-04T11:49:45+00:00,github-actions,29.184310174,0,0.0,0.0,0.0,97.5MB,102203392,0,4,0.0,0,kaniko_service-python_optimized_warm_run3.json
 kaniko,service-python,optimized,warm,4,2026-01-04T11:53:45+00:00,github-actions,30.048637794,0,0.0,0.0,0.0,97.5MB,102204928,0,4,0.0,0,kaniko_service-python_optimized_warm_run4.json
 kaniko,service-python,optimized,warm,5,2026-01-04T11:57:14+00:00,github-actions,30.339730797,0,0.0,0.0,0.0,97.5MB,102211584,0,4,0.0,0,kaniko_service-python_optimized_warm_run5.json
+kaniko,service-go,baseline,cold,1,2026-02-18T14:31:26+01:00,github-actions-selfhosted,19.98349,0,0.0,0.0,0.0,0B,0,0,3,0.0,0,kaniko_service-go_baseline_cold_run1.json
+kaniko,service-go,baseline,cold,2,2026-02-18T14:38:29+01:00,github-actions-selfhosted,19.931702,0,0.0,0.0,0.0,0B,0,0,3,0.0,0,kaniko_service-go_baseline_cold_run2.json
+kaniko,service-go,baseline,cold,3,2026-02-18T14:44:01+01:00,github-actions-selfhosted,19.473164,0,0.0,0.0,0.0,0B,0,0,3,0.0,0,kaniko_service-go_baseline_cold_run3.json
+kaniko,service-go,optimized,cold,1,2026-02-18T14:33:30+01:00,github-actions-selfhosted,16.055483,0,0.0,0.0,0.0,0B,0,0,6,0.0,0,kaniko_service-go_optimized_cold_run1.json
+kaniko,service-go,optimized,cold,2,2026-02-18T14:39:47+01:00,github-actions-selfhosted,15.167265,0,0.0,0.0,0.0,0B,0,0,6,0.0,0,kaniko_service-go_optimized_cold_run2.json
+kaniko,service-go,optimized,cold,3,2026-02-18T14:40:57+01:00,github-actions-selfhosted,16.166091,0,0.0,0.0,0.0,0B,0,0,6,0.0,0,kaniko_service-go_optimized_cold_run3.json
+kaniko,service-node,baseline,cold,1,2026-02-18T14:32:59+01:00,github-actions-selfhosted,14.253987,0,0.0,0.0,0.0,0B,0,0,3,0.0,0,kaniko_service-node_baseline_cold_run1.json
+kaniko,service-node,baseline,cold,2,2026-02-18T14:37:56+01:00,github-actions-selfhosted,15.543701,0,0.0,0.0,0.0,0B,0,0,3,0.0,0,kaniko_service-node_baseline_cold_run2.json
+kaniko,service-node,baseline,cold,3,2026-02-18T14:42:12+01:00,github-actions-selfhosted,17.03427,0,0.0,0.0,0.0,0B,0,0,3,0.0,0,kaniko_service-node_baseline_cold_run3.json
+kaniko,service-node,optimized,cold,1,2026-02-18T14:30:54+01:00,github-actions-selfhosted,15.716366,0,0.0,0.0,0.0,0B,0,0,4,0.0,0,kaniko_service-node_optimized_cold_run1.json
+kaniko,service-node,optimized,cold,2,2026-02-18T14:37:25+01:00,github-actions-selfhosted,13.77503,0,0.0,0.0,0.0,0B,0,0,4,0.0,0,kaniko_service-node_optimized_cold_run2.json
+kaniko,service-node,optimized,cold,3,2026-02-18T14:42:47+01:00,github-actions-selfhosted,14.266535,0,0.0,0.0,0.0,0B,0,0,4,0.0,0,kaniko_service-node_optimized_cold_run3.json
+kaniko,service-python,baseline,cold,1,2026-02-18T14:32:03+01:00,github-actions-selfhosted,23.929877,0,0.0,0.0,0.0,0B,0,0,3,0.0,0,kaniko_service-python_baseline_cold_run1.json
+kaniko,service-python,baseline,cold,2,2026-02-18T14:35:54+01:00,github-actions-selfhosted,23.816382,0,0.0,0.0,0.0,0B,0,0,3,0.0,0,kaniko_service-python_baseline_cold_run2.json
+kaniko,service-python,baseline,cold,3,2026-02-18T14:43:19+01:00,github-actions-selfhosted,23.846284,0,0.0,0.0,0.0,0B,0,0,3,0.0,0,kaniko_service-python_baseline_cold_run3.json
+kaniko,service-python,optimized,cold,1,2026-02-18T14:30:11+01:00,github-actions-selfhosted,25.327167,0,0.0,0.0,0.0,0B,0,0,4,0.0,0,kaniko_service-python_optimized_cold_run1.json
+kaniko,service-python,optimized,cold,2,2026-02-18T14:39:06+01:00,github-actions-selfhosted,23.974986,0,0.0,0.0,0.0,0B,0,0,4,0.0,0,kaniko_service-python_optimized_cold_run2.json
+kaniko,service-python,optimized,cold,3,2026-02-18T14:41:31+01:00,github-actions-selfhosted,23.899209,0,0.0,0.0,0.0,0B,0,0,4,0.0,0,kaniko_service-python_optimized_cold_run3.json
 buildah,service-go,baseline,cold,1,2026-01-14T18:29:13+00:00,gitlab-ci,61.22,114,51.78,18.1,206.06,909 MB,0,0,5,0.0,0,buildah_service-go_baseline_cold_run1.json
 buildah,service-go,baseline,cold,2,2026-01-14T18:38:17+00:00,gitlab-ci,57.27,116,49.44,17.01,202.42,909 MB,0,0,5,0.0,0,buildah_service-go_baseline_cold_run2.json
 buildah,service-go,baseline,cold,3,2026-01-14T18:52:22+00:00,gitlab-ci,63.53,111,52.54,18.22,212.74,909 MB,0,0,5,0.0,0,buildah_service-go_baseline_cold_run3.json
@@ -461,3 +479,21 @@ kaniko,service-python,optimized,cold,2,2026-01-10T14:06:47+0000,gitlab-ci-k8s,25
 kaniko,service-python,optimized,cold,3,2026-01-10T14:11:09+0000,gitlab-ci-k8s,21.0,0,0.0,0.0,0.0,97.4MB,102146048,0,1,0.0,0,kaniko_service-python_optimized_cold_run3.json
 kaniko,service-python,optimized,cold,4,2026-01-10T14:14:34+0000,gitlab-ci-k8s,24.0,0,0.0,0.0,0.0,97.4MB,102146048,0,1,0.0,0,kaniko_service-python_optimized_cold_run4.json
 kaniko,service-python,optimized,cold,5,2026-01-10T14:18:15+0000,gitlab-ci-k8s,29.0,0,0.0,0.0,0.0,97.4MB,102146048,0,1,0.0,0,kaniko_service-python_optimized_cold_run5.json
+kaniko,service-go,baseline,cold,1,2026-02-18T13:48:07+0000,gitlab-ci-selfhosted,18.0,0,0.0,0.0,0.0,295.2MB,309552128,0,1,0.0,0,kaniko_service-go_baseline_cold_run1.json
+kaniko,service-go,baseline,cold,2,2026-02-18T13:54:41+0000,gitlab-ci-selfhosted,20.0,0,0.0,0.0,0.0,295.2MB,309551616,0,1,0.0,0,kaniko_service-go_baseline_cold_run2.json
+kaniko,service-go,baseline,cold,3,2026-02-18T14:02:10+0000,gitlab-ci-selfhosted,20.0,0,0.0,0.0,0.0,295.2MB,309552128,0,1,0.0,0,kaniko_service-go_baseline_cold_run3.json
+kaniko,service-go,optimized,cold,1,2026-02-18T13:48:34+0000,gitlab-ci-selfhosted,16.0,0,0.0,0.0,0.0,7.7MB,8053760,0,1,0.0,0,kaniko_service-go_optimized_cold_run1.json
+kaniko,service-go,optimized,cold,2,2026-02-18T13:55:10+0000,gitlab-ci-selfhosted,15.0,0,0.0,0.0,0.0,7.7MB,8053760,0,1,0.0,0,kaniko_service-go_optimized_cold_run2.json
+kaniko,service-go,optimized,cold,3,2026-02-18T14:02:39+0000,gitlab-ci-selfhosted,16.0,0,0.0,0.0,0.0,7.7MB,8053760,0,1,0.0,0,kaniko_service-go_optimized_cold_run3.json
+kaniko,service-node,baseline,cold,1,2026-02-18T13:48:57+0000,gitlab-ci-selfhosted,14.0,0,0.0,0.0,0.0,80.5MB,84359168,0,1,0.0,0,kaniko_service-node_baseline_cold_run1.json
+kaniko,service-node,baseline,cold,2,2026-02-18T13:55:33+0000,gitlab-ci-selfhosted,15.0,0,0.0,0.0,0.0,80.4MB,84346368,0,1,0.0,0,kaniko_service-node_baseline_cold_run2.json
+kaniko,service-node,baseline,cold,3,2026-02-18T14:03:03+0000,gitlab-ci-selfhosted,15.0,0,0.0,0.0,0.0,80.4MB,84354048,0,1,0.0,0,kaniko_service-node_baseline_cold_run3.json
+kaniko,service-node,optimized,cold,1,2026-02-18T13:49:19+0000,gitlab-ci-selfhosted,19.0,0,0.0,0.0,0.0,80.4MB,84356096,0,1,0.0,0,kaniko_service-node_optimized_cold_run1.json
+kaniko,service-node,optimized,cold,2,2026-02-18T13:55:57+0000,gitlab-ci-selfhosted,14.0,0,0.0,0.0,0.0,80.4MB,84350464,0,1,0.0,0,kaniko_service-node_optimized_cold_run2.json
+kaniko,service-node,optimized,cold,3,2026-02-18T14:03:27+0000,gitlab-ci-selfhosted,15.0,0,0.0,0.0,0.0,80.4MB,84355584,0,1,0.0,0,kaniko_service-node_optimized_cold_run3.json
+kaniko,service-python,baseline,cold,1,2026-02-18T13:49:47+0000,gitlab-ci-selfhosted,27.0,0,0.0,0.0,0.0,95.3MB,99970560,0,1,0.0,0,kaniko_service-python_baseline_cold_run1.json
+kaniko,service-python,baseline,cold,2,2026-02-18T13:56:19+0000,gitlab-ci-selfhosted,24.0,0,0.0,0.0,0.0,95.3MB,99973632,0,1,0.0,0,kaniko_service-python_baseline_cold_run2.json
+kaniko,service-python,baseline,cold,3,2026-02-18T14:03:50+0000,gitlab-ci-selfhosted,23.0,0,0.0,0.0,0.0,95.3MB,99972096,0,1,0.0,0,kaniko_service-python_baseline_cold_run3.json
+kaniko,service-python,optimized,cold,1,2026-02-18T13:50:22+0000,gitlab-ci-selfhosted,24.0,0,0.0,0.0,0.0,95.3MB,99971072,0,1,0.0,0,kaniko_service-python_optimized_cold_run1.json
+kaniko,service-python,optimized,cold,2,2026-02-18T13:56:51+0000,gitlab-ci-selfhosted,24.0,0,0.0,0.0,0.0,95.3MB,99975168,0,1,0.0,0,kaniko_service-python_optimized_cold_run2.json
+kaniko,service-python,optimized,cold,3,2026-02-18T14:04:20+0000,gitlab-ci-selfhosted,24.0,0,0.0,0.0,0.0,95.3MB,99972096,0,1,0.0,0,kaniko_service-python_optimized_cold_run3.json

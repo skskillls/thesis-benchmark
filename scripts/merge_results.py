@@ -57,6 +57,7 @@ def main():
         'results-gitlab-public/*/*.json',  
         'results/*.json',
         'final-results/*.json',
+        'results-kaniko-selfhosted/*/*.json',
     ]
     
     all_records = []

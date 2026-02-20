@@ -1,0 +1,22 @@
+{
+  "tool": "kaniko",
+  "service": "service-node",
+  "dockerfile_type": "optimized",
+  "cache_scenario": "cold",
+  "run_number": 3,
+  "timestamp": "2026-02-18T14:42:47+01:00",
+  "ci_system": "github-actions-selfhosted",
+  "performance": {
+    "build_duration_seconds": 14.266535000,
+    "cpu_percent": 0,
+    "cpu_user_seconds": 0,
+    "cpu_system_seconds": 0,
+    "memory_peak_mb": 0,
+    "image_size": "0B",
+    "image_size_bytes": 0,
+    "cache_hits": 0,
+    "cache_total_steps": 4,
+    "cache_hit_ratio": 0.0000
+  },
+  "exit_code": 0
+}

@@ -1,0 +1,22 @@
+{
+  "tool": "kaniko",
+  "service": "service-go",
+  "dockerfile_type": "optimized",
+  "cache_scenario": "cold",
+  "run_number": 3,
+  "timestamp": "2026-02-18T14:02:39+0000",
+  "ci_system": "gitlab-ci-selfhosted",
+  "performance": {
+    "build_duration_seconds": 16,
+    "cpu_percent": 0,
+    "cpu_user_seconds": 0,
+    "cpu_system_seconds": 0,
+    "memory_peak_mb": 0,
+    "image_size": "7.7MB",
+    "image_size_bytes": 8053760,
+    "cache_hits": 0,
+    "cache_total_steps": 1,
+    "cache_hit_ratio": 0
+  },
+  "exit_code": 0
+}

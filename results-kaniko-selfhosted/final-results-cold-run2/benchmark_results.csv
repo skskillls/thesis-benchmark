@@ -1,0 +1,7 @@
+tool,service,dockerfile_type,cache_scenario,run_number,timestamp,ci_system,build_duration_seconds,cpu_percent,cpu_user_seconds,cpu_system_seconds,memory_peak_mb,image_size,image_size_bytes,cache_hits,cache_total_steps,cache_hit_ratio,exit_code
+kaniko,service-node,baseline,cold,2,2026-02-18T14:37:56+01:00,github-actions-selfhosted,15.543701,0,0,0,0,0B,0,0,3,0.0,0
+kaniko,service-go,baseline,cold,2,2026-02-18T14:38:29+01:00,github-actions-selfhosted,19.931702,0,0,0,0,0B,0,0,3,0.0,0
+kaniko,service-python,optimized,cold,2,2026-02-18T14:39:06+01:00,github-actions-selfhosted,23.974986,0,0,0,0,0B,0,0,4,0.0,0
+kaniko,service-python,baseline,cold,2,2026-02-18T14:35:54+01:00,github-actions-selfhosted,23.816382,0,0,0,0,0B,0,0,3,0.0,0
+kaniko,service-go,optimized,cold,2,2026-02-18T14:39:47+01:00,github-actions-selfhosted,15.167265,0,0,0,0,0B,0,0,6,0.0,0
+kaniko,service-node,optimized,cold,2,2026-02-18T14:37:25+01:00,github-actions-selfhosted,13.77503,0,0,0,0,0B,0,0,4,0.0,0

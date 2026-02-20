@@ -13,9 +13,9 @@ buildkit,service-node,baseline,263285652.0,263178987,263463426
 buildkit,service-node,optimized,263285650.0,263178977,263463421
 buildkit,service-python,baseline,279513510.0,279505962,279526093
 buildkit,service-python,optimized,279513510.0,279505962,279526093
-kaniko,service-go,baseline,319911459.0,319871488,319920640
-kaniko,service-go,optimized,7985152.0,7985152,7985152
-kaniko,service-node,baseline,84324917.0,84253696,84383744
-kaniko,service-node,optimized,84326947.0,84256768,84378624
-kaniko,service-python,baseline,102194176.0,102141952,102214144
-kaniko,service-python,optimized,102197636.0,102144512,102218240
+kaniko,service-go,baseline,291602520.0,0,319920640
+kaniko,service-go,optimized,7306591.0,0,8053760
+kaniko,service-node,baseline,77099491.0,0,84383744
+kaniko,service-node,optimized,77101246.0,0,84378624
+kaniko,service-python,baseline,93244211.0,0,102214144
+kaniko,service-python,optimized,93247137.0,0,102218240

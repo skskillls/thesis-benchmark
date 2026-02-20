@@ -1,0 +1,7 @@
+tool,service,dockerfile_type,cache_scenario,run_number,timestamp,ci_system,build_duration_seconds,cpu_percent,cpu_user_seconds,cpu_system_seconds,memory_peak_mb,image_size,image_size_bytes,cache_hits,cache_total_steps,cache_hit_ratio,exit_code
+kaniko,service-python,baseline,cold,3,2026-02-18T14:03:50+0000,gitlab-ci-selfhosted,23,0,0,0,0,95.3MB,99972096,0,1,0,0
+kaniko,service-node,baseline,cold,3,2026-02-18T14:03:03+0000,gitlab-ci-selfhosted,15,0,0,0,0,80.4MB,84354048,0,1,0,0
+kaniko,service-node,optimized,cold,3,2026-02-18T14:03:27+0000,gitlab-ci-selfhosted,15,0,0,0,0,80.4MB,84355584,0,1,0,0
+kaniko,service-python,optimized,cold,3,2026-02-18T14:04:20+0000,gitlab-ci-selfhosted,24,0,0,0,0,95.3MB,99972096,0,1,0,0
+kaniko,service-go,baseline,cold,3,2026-02-18T14:02:10+0000,gitlab-ci-selfhosted,20,0,0,0,0,295.2MB,309552128,0,1,0,0
+kaniko,service-go,optimized,cold,3,2026-02-18T14:02:39+0000,gitlab-ci-selfhosted,16,0,0,0,0,7.7MB,8053760,0,1,0,0
